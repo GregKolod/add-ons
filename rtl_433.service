@@ -1,0 +1,13 @@
+[Unit]
+Description=rtl_433 Oregon temp.
+After=network.target
+
+[Service]
+User=root
+
+ExecStart=/bin/bash -c "/usr/local/bin/rtl_433 -F json -R 12 |mosquitto_pub -t home/rtl_433 -l -u HA -P HomRas"
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
