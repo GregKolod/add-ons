@@ -1,6 +1,12 @@
 # HomeAssistant
 konfiguracja własna do HA
 
+#instalacja klient mqtt - w hass.io add-on mosquitto
+
+apt-get install mosquitto-clients
+
+#utorzenie serwisu
+
 sudo nano /etc/systemd/system/rtl_433.service
 
 
