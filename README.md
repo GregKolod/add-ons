@@ -1,6 +1,9 @@
 # HomeAssistant
 konfiguracja własna do HA
 
+http://www.sensorsiot.org/install-rtl_433-for-a-sdr-rtl-dongle-on-a-raspberry-pi/
+
+
 #instalacja klient mqtt - w hass.io add-on mosquitto
 
 apt-get install mosquitto-clients
