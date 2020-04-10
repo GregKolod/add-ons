@@ -29,9 +29,7 @@ rtl_test -t
 
 sudo apt-get install libtool libusb-1.0.0-dev librtlsdr-dev rtl-sdr doxygen
 git clone https://github.com/merbanan/rtl_433.git
-cd rtl_433/ && mkdir build &&
-cd build && cmake ../ &&
-make
+cd rtl_433/ && mkdir build && cd build && cmake ../ && make
 sudo make install
 
 #Test installation:
