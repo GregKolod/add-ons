@@ -45,7 +45,7 @@ sudo nano /etc/supervisor/conf.d/rtl_433.conf
 #-----
 
 [program:rtl_433]
-command=/home/pi/rtl_433/build/src/rtl_433  -R 12 -R 19 -R 30 -R 35 -F "mqtt://localhost:1883,user=HA,pass=HomRas,events=$
+command=/home/pi/rtl_433/build/src/rtl_433  -R 12 -R 19 -R 30 -R 35 -F "mqtt://localhost:1883,user=HA,pass=HomRas,events=home/rtl_433"
 user=pi
 autostart=yes
 autorestart=yes
