@@ -243,6 +243,7 @@ def mqtt_message(client, userdata, msg):
     try:
         # Decode JSON payload
         data = json.loads(msg.payload.decode())
+        print("DATA  ",  data)
         bridge_event_to_hass(client, msg.topic, data)
 
     except json.decoder.JSONDecodeError:
