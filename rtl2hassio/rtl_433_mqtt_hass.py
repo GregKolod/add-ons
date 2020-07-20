@@ -45,7 +45,7 @@ mappings = {
 
     "door": {
         "device_type": "binary_sensor",
-        "object_suffix": "cmd",
+        "object_suffix": "tristate",
         "config": {
             "device_class": "door",
             "name": "command status",
@@ -55,7 +55,7 @@ mappings = {
         }
     },
 
-    "window": {
+    "tristate": {
         "device_type": "binary_sensor",
         "object_suffix": "cmd",
         "config": {
@@ -327,8 +327,8 @@ def bridge_event_to_hass(mqttc, topic, data):
 
     if "channel" in data:
         channel = str(data["channel"])
-    else:
-        channel = '4'
+    # else:
+    #     channel = '4'
     print("channel", channel)
     # detect known attributes
     for key in data.keys():
