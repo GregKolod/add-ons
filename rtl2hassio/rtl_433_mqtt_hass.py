@@ -260,7 +260,7 @@ def sanitize(text):
             .replace("&", ""))
 
 
-def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
+def publish_config(mqttc, topic, manmodel, instance, channel=4, mapping):
     """Publish Home Assistant auto discovery data."""
     global discovery_timeouts
 
