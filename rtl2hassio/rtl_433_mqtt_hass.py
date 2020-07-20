@@ -47,10 +47,10 @@ mappings = {
         "device_type": "binary_sensor",
         "object_suffix": "cmd",
         "config": {
-
             "name": "command status",
-            "payload_on": "227",
-            "payload_off": "233"
+            "value_template": "{{ value_json.temperature_1_C }}"
+            # "payload_on": "227",
+            # "payload_off": "233"
         }
     },
 
