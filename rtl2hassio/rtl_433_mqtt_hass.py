@@ -329,11 +329,12 @@ def bridge_event_to_hass(mqttc, topic, data):
         channel = str(data["channel"])
     else:
         channel = '4'
-
+    print("channel", channel)
     # detect known attributes
     for key in data.keys():
         if key in mappings:
             publish_config(mqttc, key, manmodel, instance, channel, mappings[key])
+            print(key)
 
 
 def rtl_433_bridge():
