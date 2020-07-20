@@ -46,13 +46,13 @@ mappings = {
 
     "tristate": {
         "device_type": "binary_sensor",
-        "object_suffix": "cmd",
+        "object_suffix": "tristate",
         "config": {
             "device_class": "window",
             "name": "command status",
             # "value_template": "{{ value_json.cmd }}",
             "payload_on": "227",
-            "payload_off": "233"
+            "payload_off": "00ZZ01001X01"
         }
     },
 
