@@ -45,22 +45,16 @@ mappings = {
 
     "door": {
         "device_type": "binary_sensor",
-        "object_suffix": "tristate",
+        "object_suffix": "cmd",
         "config": {
-            #      "value_template": "{{ value_json.protocol }}",
-            "payload_on": "00ZZ0111X0XZ",
-            "payload_off": "00ZZ0111X001"
+
+            "name": "command status",
+            "payload_on": "227",
+            "payload_off": "233"
         }
     },
 
-    "window": {
-        "device_type": "binary_sensor",
-        "object_suffix": "cmd",
-        "config": {
-            "payload_on": "243",
-            "payload_off": "249"
-        }
-    },
+
     #    "rssi": {
     #        "device_type": "sensor",
     #        "object_suffix": "RSSI",
@@ -77,7 +71,6 @@ mappings = {
             "device_class": "temperature",
             "name": "Temperature",
             "unit_of_measurement": "°C",
-            #            "value_template": "{{ value_json.temperature_C }}"
         }
     },
     "temperature_1_C": {
