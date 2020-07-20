@@ -260,7 +260,7 @@ def sanitize(text):
             .replace("&", ""))
 
 
-def publish_config(mqttc, topic, manmodel, instance, channel=4, mapping):
+def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     """Publish Home Assistant auto discovery data."""
     global discovery_timeouts
 
@@ -315,6 +315,8 @@ def bridge_event_to_hass(mqttc, topic, data):
 
     if "channel" in data:
         channel = str(data["channel"])
+    else:
+        channel = '4'
 
     # detect known attributes
     for key in data.keys():
