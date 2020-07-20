@@ -43,27 +43,16 @@ mappings = {
         }
     },
 
-    "door": {
-        "device_type": "binary_sensor",
-        "object_suffix": "tristate",
-        "config": {
-            "device_class": "door",
-            "name": "command status",
-            # "value_template": "{{ value_json.temperature_1_C }}"
-            # "payload_on": "227",
-            # "payload_off": "233"
-        }
-    },
 
     "tristate": {
         "device_type": "binary_sensor",
         "object_suffix": "cmd",
         "config": {
-            "device_class": "windows",
+            "device_class": "window",
             "name": "command status",
-            "value_template": "{{ value_json.cmd }}"
-            # "payload_on": "227",
-            # "payload_off": "233"
+            # "value_template": "{{ value_json.cmd }}",
+            "payload_on": "227",
+            "payload_off": "233"
         }
     },
 
@@ -83,16 +72,6 @@ mappings = {
             "device_class": "temperature",
             "name": "Temperature",
             "unit_of_measurement": "°C",
-        }
-    },
-    "temperature_1_C": {
-        "device_type": "sensor",
-        "object_suffix": "Temperature 1",
-        "config": {
-            "device_class": "temperature",
-            "name": "Temperature 1",
-            "unit_of_measurement": "°C",
-            "value_template": "{{ value_json.temperature_1_C }}"
         }
     },
 
