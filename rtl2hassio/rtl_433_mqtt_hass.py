@@ -327,8 +327,8 @@ def bridge_event_to_hass(mqttc, topic, data):
 
     if "channel" in data:
         channel = str(data["channel"])
-    # else:
-    #     channel = '4'
+    else:
+        channel = '4'
     print("channel", channel)
     # detect known attributes
     for key in data.keys():
