@@ -55,17 +55,17 @@ mappings = {
             "payload_off": "233"
         }
     },
-    "cmd": {
-        "device_type": "binary_sensor",
-        "object_suffix": "cmd",
-        "config": {
-            "device_class": "window",
-            "name": "command status cmd",
-            "value_template": "{{ value_json.cmd }}"
-            # "payload_on": "227",
-            # "payload_off": "233"
-        }
-    },
+    # "cmd": {
+    #     "device_type": "binary_sensor",
+    #     "object_suffix": "cmd",
+    #     "config": {
+    #         "device_class": "window",
+    #         "name": "command status cmd",
+    #         "value_template": "{{ value_json.cmd }}"
+    #         # "payload_on": "227",
+    #         # "payload_off": "233"
+    #     }
+    # },
 
 
 
