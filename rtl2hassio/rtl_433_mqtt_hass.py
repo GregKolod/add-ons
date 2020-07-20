@@ -40,38 +40,36 @@ mappings = {
         "object_suffix": "Protocol",
         "config": {
             "name": "Protocol",
-#            "value_template": "{{ value_json.protocol }}"
         }
     },
-    
-     "door": {
-     "device_type": "binary_sensor",
-     "object_suffix": "tristate",
-     "config": {
-   #      "value_template": "{{ value_json.protocol }}",
-          "payload_on": "00ZZ0111X0XZ",
-          "payload_off": "00ZZ0111X001"
+
+    "door": {
+        "device_type": "binary_sensor",
+        "object_suffix": "tristate",
+        "config": {
+            #      "value_template": "{{ value_json.protocol }}",
+            "payload_on": "00ZZ0111X0XZ",
+            "payload_off": "00ZZ0111X001"
         }
-   }, 
-    
-    
-     "window": {
-     "device_type": "binary_sensor",
-     "object_suffix": "cmd",
-     "config": {
-          "payload_on": "243",
-          "payload_off": "249"
+    },
+
+    "window": {
+        "device_type": "binary_sensor",
+        "object_suffix": "cmd",
+        "config": {
+            "payload_on": "243",
+            "payload_off": "249"
         }
-   }, 
-#    "rssi": {
-#        "device_type": "sensor",
-#        "object_suffix": "RSSI",
-#        "config": {
-#            "name": "RSSI",
-#            "unit_of_measurement": "dB",
-#            "value_template": "{{ value_json.rssi }}"
-#        }
-#    },
+    },
+    #    "rssi": {
+    #        "device_type": "sensor",
+    #        "object_suffix": "RSSI",
+    #        "config": {
+    #            "name": "RSSI",
+    #            "unit_of_measurement": "dB",
+    #            "value_template": "{{ value_json.rssi }}"
+    #        }
+    #    },
     "temperature_C": {
         "device_type": "sensor",
         "object_suffix": "Temperature",
@@ -79,7 +77,7 @@ mappings = {
             "device_class": "temperature",
             "name": "Temperature",
             "unit_of_measurement": "°C",
-#            "value_template": "{{ value_json.temperature_C }}"
+            #            "value_template": "{{ value_json.temperature_C }}"
         }
     },
     "temperature_1_C": {
@@ -92,52 +90,19 @@ mappings = {
             "value_template": "{{ value_json.temperature_1_C }}"
         }
     },
-    "temperature_2_C": {
-        "device_type": "sensor",
-        "object_suffix": "Temperature 2",
-        "config": {
-            "device_class": "temperature",
-            "name": "Temperature 2",
-            "unit_of_measurement": "°C",
-            "value_template": "{{ value_json.temperature_2_C }}"
-        }
-    },
-    "temperature_F": {
-        "device_type": "sensor",
-        "object_suffix": "Temperature",
-        "config": {
-            "device_class": "temperature",
-            "name": "Temperature",
-            "unit_of_measurement": "°F",
-            "value_template": "{{ value_json.temperature_F }}"
-        }
-    },
 
-#    "battery_ok": {
-#        "device_type": "sensor",
-#        "object_suffix": "Battery",
-#        "config": {
-#            "device_class": "battery",
-#            "name": "Battery",
-#            "unit_of_measurement": "%",
-#            "value_template": "{{ float(value_json.battery_ok) * 99 + 1 }}"
-#        }
-#    },
-        
-        
-      "battery_ok": {
+
+
+    "battery_ok": {
         "device_type": "binary_sensor",
         "object_suffix": "Battery",
         "config": {
             "device_class": "battery",
             "name": "Battery status",
-    #         "value_template": "{{ float(value|int) * 99 }}"
-             "payload_on": "0",
-             "payload_off": "1"
+            "payload_on": "0",
+            "payload_off": "1"
         }
-    },      
-        
-        
+    },
 
     "humidity": {
         "device_type": "sensor",
@@ -146,7 +111,6 @@ mappings = {
             "device_class": "humidity",
             "name": "Humidity",
             "unit_of_measurement": "%",
-#            "value_template": "{{ value_json.humidity }}"
         }
     },
 
@@ -328,7 +292,7 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
 
     # add Home Assistant device info
 
-    manufacturer,model = manmodel.split("-", 1)
+    manufacturer, model = manmodel.split("-", 1)
 
     device = {}
     device["identifiers"] = instance
@@ -336,7 +300,7 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     device["model"] = model
     device["manufacturer"] = manufacturer
     config["device"] = device
-    
+
     mqttc.publish(path, json.dumps(config))
     print(path, " : ", json.dumps(config))
 
