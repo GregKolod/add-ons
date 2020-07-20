@@ -47,13 +47,25 @@ mappings = {
         "device_type": "binary_sensor",
         "object_suffix": "cmd",
         "config": {
+            "device_class": "door",
             "name": "command status",
-            "value_template": "{{ value_json.temperature_1_C }}"
+            # "value_template": "{{ value_json.temperature_1_C }}"
             # "payload_on": "227",
             # "payload_off": "233"
         }
     },
 
+    "window": {
+        "device_type": "binary_sensor",
+        "object_suffix": "cmd",
+        "config": {
+            "device_class": "windows",
+            "name": "command status",
+            "value_template": "{{ value_json.cmd }}"
+            # "payload_on": "227",
+            # "payload_off": "233"
+        }
+    },
 
     #    "rssi": {
     #        "device_type": "sensor",
