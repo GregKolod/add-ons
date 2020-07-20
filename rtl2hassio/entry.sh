@@ -30,4 +30,4 @@ echo "DISCOVERY_INTERVAL =" $DISCOVERY_INTERVAL
 
 
 
-rtl_433  $PROTOCOL -C si  -F mqtt://$MQTT_HOST:$MQTT_PORT,user=$MQTT_USERNAME,pass=$MQTT_PASSWORD,events=$MQTT_TOPIC/events,states=$MQTT_TOPIC/states,devices=$MQTT_TOPIC[/model][/id] -M time -M protocol -M level | /scripts/rtl_433_mqtt_hass.py
+rtl_433  $PROTOCOL -C si  -F mqtt://$MQTT_HOST:$MQTT_PORT,user=$MQTT_USERNAME,pass=$MQTT_PASSWORD,events=$MQTT_TOPIC/events,states=$MQTT_TOPIC/states,devices=$MQTT_TOPIC[/model][/id][/channel:0]  -M time -M protocol -M level | /scripts/rtl_433_mqtt_hass.py
