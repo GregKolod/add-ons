@@ -50,7 +50,7 @@ mappings = {
         "config": {
             "device_class": "window",
             "name": "command status",
-            # "value_template": "{{ value_json.cmd }}",
+            "value_template": "{{ value_json.cmd }}",
             "payload_on": "227",
             "payload_off": "233"
         }
