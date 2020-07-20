@@ -1,0 +1,32 @@
+{
+  "name": "RTL to Hassio",
+  "version": "2.32",
+  "slug": "rtl2hassio",
+  "description": "RTL433 to Hassio with autodiscovery",
+  "url": "https://github.com/GregKolod/hassio_addons",
+  "startup": "before",
+  "arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
+  "devices": ["/dev/bus/usb:/dev/bus/usb:rwm"],
+  "boot": "auto",
+  "options":
+    {
+    "mqtt_host": "localhost",
+    "mqtt_user": "",
+    "mqtt_password": "",
+    "mqtt_topic": "rtl_433",
+    "protocol": "-R 12 -R 19 -R 30 -R 35",
+    "discovery_prefix": "homeassistant",
+    "discovery_interval": 600
+  },
+  "schema":
+    {
+    "mqtt_host": "str",
+    "mqtt_user": "str",
+    "mqtt_password": "str",
+    "mqtt_topic": "str",
+    "protocol": "str",
+    "discovery_prefix": "str",
+    "discovery_interval": "int"
+      
+   }
+}

@@ -1,3 +1,10 @@
+# hassio_addons
+hass.io addons
+SDR RTL433 to Mqtt
+
+v0.04 - dodany supervisor
+--
+wiesza sie nadal, do wyłączenia.
 # HomeAssistant
 konfiguracja własna do HA
 
