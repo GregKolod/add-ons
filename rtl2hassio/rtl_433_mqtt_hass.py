@@ -59,7 +59,7 @@ mappings = {
         "config": {
             "device_class": "window",
             "name": "command status 3",
-            "value_template": "{% if value_json.tristate[-2:] == '01'  %} '0' {% else %} '1' {% endif %}",
+            "value_template": "{% if value_json.tristate[-2:] == '01'  %} 'on' {% else %} 'off' {% endif %}",
 
         }
     },
