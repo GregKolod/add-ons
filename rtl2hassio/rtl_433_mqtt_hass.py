@@ -11,13 +11,12 @@
 # (use Python 3.x or pip install python-daemon)
 # import daemon
 
-from __future__ import print_function
-from __future__ import with_statement
+from __future__ import print_function, with_statement
 
-import os
-import socket
-import time
 import json
+import os
+import time
+
 import paho.mqtt.client as mqtt
 
 MQTT_HOST = os.environ['MQTT_HOST']
@@ -40,9 +39,8 @@ mappings = {
         "object_suffix": "Protocol",
         "config": {
             "name": "Protocol",
-        }
-    },
-
+            }
+        },
 
     "cmd": {
         "device_type": "binary_sensor",
@@ -53,21 +51,18 @@ mappings = {
             "value_template": "{{ value_json.cmd }}",
             "payload_on": "227",
             "payload_off": "233"
+            }
+        },
+    "tristate": {
+        "device_type": "binary_sensor",
+        "object_suffix": "tristate",
+        "config": {
+            "device_class": "window",
+            "name": "command status 3",
+            "value_template": "{% if value_json.tristate[-2:] == '01'  %} on {% else %} off {% endif %}"
+
         }
     },
-    # "cmd": {
-    #     "device_type": "binary_sensor",
-    #     "object_suffix": "cmd",
-    #     "config": {
-    #         "device_class": "window",
-    #         "name": "command status cmd",
-    #         "value_template": "{{ value_json.cmd }}"
-    #         # "payload_on": "227",
-    #         # "payload_off": "233"
-    #     }
-    # },
-
-
 
     #    "rssi": {
     #        "device_type": "sensor",
@@ -85,10 +80,8 @@ mappings = {
             "device_class": "temperature",
             "name": "Temperature",
             "unit_of_measurement": "°C",
-        }
-    },
-
-
+            }
+        },
 
     "battery_ok": {
         "device_type": "binary_sensor",
@@ -98,8 +91,8 @@ mappings = {
             "name": "Battery status",
             "payload_on": "0",
             "payload_off": "1"
-        }
-    },
+            }
+        },
 
     "humidity": {
         "device_type": "sensor",
@@ -108,8 +101,8 @@ mappings = {
             "device_class": "humidity",
             "name": "Humidity",
             "unit_of_measurement": "%",
-        }
-    },
+            }
+        },
 
     "moisture": {
         "device_type": "sensor",
@@ -119,8 +112,8 @@ mappings = {
             "name": "Moisture",
             "unit_of_measurement": "%",
             "value_template": "{{ value_json.moisture }}"
-        }
-    },
+            }
+        },
 
     "pressure_hPa": {
         "device_type": "sensor",
@@ -130,8 +123,8 @@ mappings = {
             "name": "Pressure",
             "unit_of_measurement": "hPa",
             "value_template": "{{ value_json.pressure_hPa }}"
-        }
-    },
+            }
+        },
 
     "wind_speed_km_h": {
         "device_type": "sensor",
@@ -141,8 +134,8 @@ mappings = {
             "name": "Wind Speed",
             "unit_of_measurement": "km/h",
             "value_template": "{{ value_json.wind_speed_km_h }}"
-        }
-    },
+            }
+        },
 
     "wind_speed_m_s": {
         "device_type": "sensor",
@@ -152,8 +145,8 @@ mappings = {
             "name": "Wind Speed",
             "unit_of_measurement": "km/h",
             "value_template": "{{ float(value_json.wind_speed_m_s) * 3.6 }}"
-        }
-    },
+            }
+        },
 
     "gust_speed_km_h": {
         "device_type": "sensor",
@@ -163,8 +156,8 @@ mappings = {
             "name": "Gust Speed",
             "unit_of_measurement": "km/h",
             "value_template": "{{ value_json.gust_speed_km_h }}"
-        }
-    },
+            }
+        },
 
     "gust_speed_m_s": {
         "device_type": "sensor",
@@ -174,8 +167,8 @@ mappings = {
             "name": "Gust Speed",
             "unit_of_measurement": "km/h",
             "value_template": "{{ float(value_json.gust_speed_m_s) * 3.6 }}"
-        }
-    },
+            }
+        },
 
     "wind_dir_deg": {
         "device_type": "sensor",
@@ -185,8 +178,8 @@ mappings = {
             "name": "Wind Direction",
             "unit_of_measurement": "°",
             "value_template": "{{ value_json.wind_dir_deg }}"
-        }
-    },
+            }
+        },
 
     "rain_mm": {
         "device_type": "sensor",
@@ -196,8 +189,8 @@ mappings = {
             "name": "Rain Total",
             "unit_of_measurement": "mm",
             "value_template": "{{ value_json.rain_mm }}"
-        }
-    },
+            }
+        },
 
     "rain_mm_h": {
         "device_type": "sensor",
@@ -207,8 +200,8 @@ mappings = {
             "name": "Rain Rate",
             "unit_of_measurement": "mm/h",
             "value_template": "{{ value_json.rain_mm_h }}"
-        }
-    },
+            }
+        },
 
     # motion...
 
@@ -222,9 +215,9 @@ mappings = {
             "name": "Depth",
             "unit_of_measurement": "cm",
             "value_template": "{{ value_json.depth_cm }}"
-        }
-    },
-}
+            }
+        },
+    }
 
 
 def mqtt_connect(client, userdata, flags, rc):
@@ -247,7 +240,7 @@ def mqtt_message(client, userdata, msg):
     try:
         # Decode JSON payload
         data = json.loads(msg.payload.decode())
-        print("DATA  ",  data)
+        print("DATA  ", data)
         bridge_event_to_hass(client, msg.topic, data)
 
     except json.decoder.JSONDecodeError:
