@@ -20,7 +20,6 @@ DISCOVERY_INTERVAL="$(jq --raw-output '.discovery_interval' $CONFIG_PATH)"
 # Start the listener and enter an endless loop
 echo "Starting RTL_433 with parameters:"
 echo "MQTT Host =" $MQTT_HOST
-# shellcheck disable=SC2153
 echo "MQTT port =" $MQTT_PORT
 echo "MQTT User =" $MQTT_USERNAME
 echo "MQTT Password =" $MQTT_PASSWORD
