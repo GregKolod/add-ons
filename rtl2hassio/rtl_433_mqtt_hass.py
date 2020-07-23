@@ -49,8 +49,8 @@ mappings = {
             "device_class": "window",
             "name": "Windows State",
             "value_template": '{{ value[-2:] }}',
-            "payload_on": "XZ",
-            "payload_off": "01"
+            "payload_off": "XZ",
+            "payload_on": "01"
 
         }
     },
