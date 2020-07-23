@@ -77,7 +77,7 @@ mappings = {
            "config": {
                "name": "RSSI",
                "unit_of_measurement": "dB",
-               "value_template": "{{ bzdury }}"
+               "value_template": "{{ 'bzdury' }}"
                # "value_template": "{{ value_json.rssi[-2:] }}"
            }
        },
