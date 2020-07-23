@@ -60,6 +60,8 @@ mappings = {
             "device_class": "window",
             "name": "command status 3",
             "value_template": "{% if value_json.tristate[-2:] == '01'  %} 'on' {% else %} 'off' {% endif %}",
+            "payload_on": "00ZZ01001XXZ",
+            "payload_off": "00ZZ01001X01"
 
         }
     },
