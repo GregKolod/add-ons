@@ -299,7 +299,7 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     config["device"] = device
 
     mqttc.publish(path, json.dumps(config))
-    print(path, " : ", json.dumps(config))
+    # print(path, " : ", json.dumps(config))
 
 
 def bridge_event_to_hass(mqttc, topic, data):
@@ -325,7 +325,7 @@ def bridge_event_to_hass(mqttc, topic, data):
     for key in data.keys():
         if key in mappings:
             publish_config(mqttc, key, manmodel, instance, channel, mappings[key])
-            print(key)
+            print(mappings[key])
 
 
 def rtl_433_bridge():
