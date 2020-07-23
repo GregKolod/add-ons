@@ -54,8 +54,8 @@ mappings = {
     #         }
     #     },
     "tristate": {
-        # "device_type": "binary_sensor",
-        "device_type": "sensor",
+        "device_type": "binary_sensor",
+        # "device_type": "sensor",
         "object_suffix": "State",
         "config": {
             # "device_class": "window",
@@ -63,8 +63,8 @@ mappings = {
             "value_template": "{{ value_json.tristate[-2:] }}",
             # "value_template": "{% if value_json.tristate[-2:] == '01'  %} 'on' {% else %} 'off' {% endif %}",
             #"value_template": "{{% if value_json.tristate == '00ZZ01001XXZ'  %} 'on' {% else %} 'off' {% endif %}}"
-            # "payload_on": "on",
-            # "payload_off": "off"
+            "payload_on": "XZ",
+            "payload_off": "01"
             # "payload_on": "00ZZ01001XXZ",
             # "payload_off": "00ZZ01001X01"
 
