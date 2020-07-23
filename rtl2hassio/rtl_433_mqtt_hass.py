@@ -59,7 +59,7 @@ mappings = {
         "config": {
             # "device_class": "window",
             "name": "State",
-            "value_template": "{{ value_json['tristate'][-2:] }}",
+            "value_template": "{{ value[-2:] }}",
             # "value_template": "{% if value_json.tristate[-2:] == '01'  %} 'on' {% else %} 'off' {% endif %}",
             #"value_template": "{{% if value_json.tristate == '00ZZ01001XXZ'  %} 'on' {% else %} 'off' {% endif %}}"
             # "payload_on": "on",
