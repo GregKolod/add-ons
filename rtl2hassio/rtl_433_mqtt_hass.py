@@ -55,11 +55,11 @@ mappings = {
     #     },
     "tristate": {
         "device_type": "binary_sensor",
-        "object_suffix": "tristate",
+        "object_suffix": "State",
         "config": {
-            "device_class": "window",
+            # "device_class": "window",
             "name": "State",
-            "value_template": "{{ value_json.tristate[-2:] }}",
+            "value_template": "{{ value_json['tristate'][-2:] }}",
             # "value_template": "{% if value_json.tristate[-2:] == '01'  %} 'on' {% else %} 'off' {% endif %}",
             #"value_template": "{{% if value_json.tristate == '00ZZ01001XXZ'  %} 'on' {% else %} 'off' {% endif %}}"
             # "payload_on": "on",
@@ -325,7 +325,7 @@ def bridge_event_to_hass(mqttc, topic, data):
     for key in data.keys():
         if key in mappings:
             publish_config(mqttc, key, manmodel, instance, channel, mappings[key])
-            print(mappings[key])
+            print(key)
 
 
 def rtl_433_bridge():
