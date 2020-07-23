@@ -63,8 +63,8 @@ mappings = {
             "value_template": "{{ value_json.tristate[-2:] }}",
             # "value_template": "{% if value_json.tristate[-2:] == '01'  %} 'on' {% else %} 'off' {% endif %}",
             #"value_template": "{{% if value_json.tristate == '00ZZ01001XXZ'  %} 'on' {% else %} 'off' {% endif %}}"
-            "payload_on": "XZ",
-            "payload_off": "01"
+            # "payload_on": "XZ",
+            # "payload_off": "01"
             # "payload_on": "00ZZ01001XXZ",
             # "payload_off": "00ZZ01001X01"
 
@@ -77,7 +77,7 @@ mappings = {
            "config": {
                "name": "RSSI",
                "unit_of_measurement": "dB",
-               "value_template": "{{ value_json.rssi }}"
+               "value_template": "{{ value_json.rssi[-2:] }}"
            }
        },
     "temperature_C": {
