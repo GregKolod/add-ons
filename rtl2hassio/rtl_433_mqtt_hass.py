@@ -58,7 +58,8 @@ mappings = {
         "object_suffix": "tristate",
         "config": {
             "device_class": "window",
-            "name": "command status 3"
+            "name": "State",
+            "value_template": "{{ value_json.tristate }}"
             # "value_template": "{% if value_json.tristate[-2:] == '01'  %} 'on' {% else %} 'off' {% endif %}",
             #"value_template": "{{% if value_json.tristate == '00ZZ01001XXZ'  %} 'on' {% else %} 'off' {% endif %}}"
             # "payload_on": "on",
@@ -95,7 +96,7 @@ mappings = {
             "device_class": "battery",
             "name": "Battery status",
             "payload_on": "0",
-            "payload_off": "1"
+            "payload_off": "1",
             }
         },
 
