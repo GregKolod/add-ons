@@ -60,7 +60,7 @@ mappings = {
         "config": {
             # "device_class": "window",
             "name": "State",
-            "value_template": "{{ value_json.tristate[-2:] }}",
+            "value_template": "{{ value_json.cmd[-2:] }}",
             # "value_template": "{% if value_json.tristate[-2:] == '01'  %} 'on' {% else %} 'off' {% endif %}",
             #"value_template": "{{% if value_json.tristate == '00ZZ01001XXZ'  %} 'on' {% else %} 'off' {% endif %}}"
             # "payload_on": "XZ",
@@ -71,16 +71,16 @@ mappings = {
         }
     },
 
-       "rssi": {
-           "device_type": "sensor",
-           "object_suffix": "RSSI",
-           "config": {
-               "name": "RSSI",
-               "unit_of_measurement": "dB",
-               "value_template": "{{ 'bzdury' }}"
-               # "value_template": "{{ value_json.rssi[-2:] }}"
-           }
-       },
+       # "rssi": {
+       #     "device_type": "sensor",
+       #     "object_suffix": "RSSI",
+       #     "config": {
+       #         "name": "RSSI",
+       #         "unit_of_measurement": "dB",
+       #         "value_template": "{{ 'bzdury' }}"
+       #         # "value_template": "{{ value_json.rssi[-2:] }}"
+       #     }
+       # },
     "temperature_C": {
         "device_type": "sensor",
         "object_suffix": "Temperature",
