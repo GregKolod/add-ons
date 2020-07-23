@@ -54,8 +54,8 @@ mappings = {
     #         }
     #     },
     "tristate": {
-        "device_type": "binary_sensor",
-        # "device_type": "sensor",
+        # "device_type": "binary_sensor",
+        "device_type": "sensor",
         "object_suffix": "State",
         "config": {
             # "device_class": "window",
@@ -71,15 +71,15 @@ mappings = {
         }
     },
 
-    #    "rssi": {
-    #        "device_type": "sensor",
-    #        "object_suffix": "RSSI",
-    #        "config": {
-    #            "name": "RSSI",
-    #            "unit_of_measurement": "dB",
-    #            "value_template": "{{ value_json.rssi }}"
-    #        }
-    #    },
+       "rssi": {
+           "device_type": "sensor",
+           "object_suffix": "RSSI",
+           "config": {
+               "name": "RSSI",
+               "unit_of_measurement": "dB",
+               "value_template": "{{ value_json.rssi }}"
+           }
+       },
     "temperature_C": {
         "device_type": "sensor",
         "object_suffix": "Temperature",
