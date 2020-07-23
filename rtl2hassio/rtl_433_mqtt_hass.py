@@ -42,24 +42,26 @@ mappings = {
             }
         },
 
-    "cmd": {
-        "device_type": "binary_sensor",
-        "object_suffix": "cmd",
-        "config": {
-            "device_class": "window",
-            "name": "command status",
-            "value_template": "{{ value_json.cmd }}",
-            "payload_on": "227",
-            "payload_off": "233"
-            }
-        },
+    # "cmd": {
+    #     "device_type": "binary_sensor",
+    #     "object_suffix": "cmd",
+    #     "config": {
+    #         "device_class": "window",
+    #         "name": "command status",
+    #         "value_template": "{{ value_json.cmd }}",
+    #         "payload_on": "227",
+    #         "payload_off": "233"
+    #         }
+    #     },
     "tristate": {
         "device_type": "binary_sensor",
         "object_suffix": "tristate",
         "config": {
             "device_class": "window",
             "name": "command status 3",
-            "value_template": "{% if value_json.tristate[-2:] == '01'  %} on {% else %} off {% endif %}"
+            "value_template": "{% if value_json.tristate[-2:] == '01'  %} '0' {% else %} off {% endif %}",
+            "payload_on": "0",
+            "payload_off": "1"
 
         }
     },
