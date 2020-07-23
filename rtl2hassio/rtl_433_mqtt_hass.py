@@ -56,7 +56,6 @@ mappings = {
     "tristate": {
         # "device_type": "binary_sensor",
         "device_type": "sensor",
-
         "object_suffix": "State",
         "config": {
             # "device_class": "window",
