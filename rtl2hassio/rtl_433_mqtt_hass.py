@@ -42,45 +42,27 @@ mappings = {
             }
         },
 
-    # "cmd": {
-    #     "device_type": "binary_sensor",
-    #     "object_suffix": "cmd",
-    #     "config": {
-    #         "device_class": "window",
-    #         "name": "command status",
-    #         "value_template": "{{ value_json.cmd }}",
-    #         "payload_on": "227",
-    #         "payload_off": "233"
-    #         }
-    #     },
     "tristate": {
         "device_type": "binary_sensor",
-        # "device_type": "sensor",
         "object_suffix": "State",
         "config": {
-            # "device_class": "window",
-            "name": "State",
+            "device_class": "window",
+            "name": "Windows State",
             "value_template": '{{ value[-2:] }}',
-            # "value_template": "{% if value_json.tristate[-2:] == '01'  %} 'on' {% else %} 'off' {% endif %}",
-            # "value_template": "{{% if value_json.tristate == '00ZZ01001XXZ'  %} 'on' {% else %} 'off' {% endif %}}"
             "payload_on": "XZ",
             "payload_off": "01"
-            # "payload_on": "00ZZ01001XXZ",
-            # "payload_off": "00ZZ01001X01"
 
         }
     },
 
-       # "rssi": {
-       #     "device_type": "sensor",
-       #     "object_suffix": "RSSI",
-       #     "config": {
-       #         "name": "RSSI",
-       #         "unit_of_measurement": "dB",
-       #         "value_template": "{{ 'bzdury' }}"
-       #         # "value_template": "{{ value_json.rssi[-2:] }}"
-       #     }
-       # },
+       "rssi": {
+           "device_type": "sensor",
+           "object_suffix": "RSSI",
+           "config": {
+               "name": "RSSI",
+               "unit_of_measurement": "dB",
+           }
+       },
     "temperature_C": {
         "device_type": "sensor",
         "object_suffix": "Temperature",
