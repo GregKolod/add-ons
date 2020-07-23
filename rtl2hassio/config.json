@@ -14,7 +14,7 @@
     "mqtt_user": "HA",
     "mqtt_password": "HomRas",
     "mqtt_topic": "rtl_433",
-    "mqtt_retain" : "1",
+    "mqtt_retain" : "true",
     "protocol": "-R 12 -R 19 -R 30 -R 35",
     "discovery_prefix": "homeassistant",
     "discovery_interval": 600
