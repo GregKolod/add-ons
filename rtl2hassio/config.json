@@ -1,6 +1,6 @@
 {
   "name": "RTL to Hassio",
-  "version": "2.7",
+  "version": "3.0",
   "slug": "rtl2hassio",
   "description": "RTL433 to Hassio with autodiscovery",
   "url": "https://github.com/GregKolod/add-ons",
@@ -14,7 +14,7 @@
     "mqtt_user": "HA",
     "mqtt_password": "HomRas",
     "mqtt_topic": "rtl_433",
-    "retain" : "1",
+    "mqtt_retain" : "1",
     "protocol": "-R 12 -R 19 -R 30 -R 35",
     "discovery_prefix": "homeassistant",
     "discovery_interval": 600
@@ -25,7 +25,7 @@
     "mqtt_user": "str",
     "mqtt_password": "str",
     "mqtt_topic": "str",
-    "retain" : "str",
+    "mqtt_retain" : "str",
     "protocol": "str",
     "discovery_prefix": "str",
     "discovery_interval": "int"

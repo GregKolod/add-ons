@@ -309,7 +309,7 @@ def bridge_event_to_hass(mqttc, topic, data):
     for key in data.keys():
         if key in mappings:
             publish_config(mqttc, key, manmodel, instance, channel, mappings[key])
-            print(key)
+            # print(key)
 
 
 def rtl_433_bridge():
