@@ -74,6 +74,7 @@ mappings = {
             }
         },
 
+
     "battery_ok": {
         # "device_type": "binary_sensor",
         "device_type": "sensor",
