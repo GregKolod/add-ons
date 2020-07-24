@@ -51,18 +51,18 @@ mappings = {
             "value_template": '{{ value[-2:] }}',
             "payload_off": "XZ",
             "payload_on": "01"
-
         }
     },
 
-       "rssi": {
-           "device_type": "sensor",
-           "object_suffix": "RSSI",
-           "config": {
-               "name": "RSSI",
-               "unit_of_measurement": "dB",
-           }
-       },
+    "rssi": {
+        "device_type": "sensor",
+        "object_suffix": "RSSI",
+         "config": {
+             "name": "RSSI",
+              "unit_of_measurement": "dB",
+        }
+    },
+
     "temperature_C": {
         "device_type": "sensor",
         "object_suffix": "Temperature",
@@ -78,9 +78,10 @@ mappings = {
         "object_suffix": "Battery",
         "config": {
             "device_class": "battery",
-            "name": "Battery status",
-            "payload_on": "0",
-            "payload_off": "1",
+            "name": "Battery",
+            "value_template": "{{ float(value_json.battery_ok) * 99 + 1 }}"
+            # "payload_on": "0",
+            # "payload_off": "1",
             }
         },
 
