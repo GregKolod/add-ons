@@ -79,7 +79,7 @@ mappings = {
         "config": {
             "device_class": "battery",
             "name": "Battery",
-            "value_template": "{{ float(value_json.battery_ok) * 99 + 1 }}"
+            "value_template": "{{ float(value) * 99 + 1 }}"
             # "payload_on": "0",
             # "payload_off": "1",
             }
