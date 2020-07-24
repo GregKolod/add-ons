@@ -58,8 +58,9 @@ mappings = {
         "device_type": "sensor",
         "object_suffix": "RSSI",
          "config": {
-             "name": "RSSI",
-              "unit_of_measurement": "dB",
+            "name": "RSSI",
+            "unit_of_measurement": "dB",
+             "value_template": "{{ value|float|round(2) }}"
         }
     },
 
