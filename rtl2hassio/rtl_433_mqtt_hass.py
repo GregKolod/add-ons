@@ -331,7 +331,7 @@ def rtl_433_bridge():
 
     while True:
         time.sleep(1)
-
+        print('--- status refresh ---')
 
 def run():
     """Run main or daemon."""
