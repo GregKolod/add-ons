@@ -288,6 +288,7 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     config["device"] = device
 
     mqttc.publish(path, json.dumps(config),  qos=0, retain=True)
+    print('--- status published ---')
 
 
 
@@ -331,7 +332,7 @@ def rtl_433_bridge():
 
     while True:
         time.sleep(1)
-        print('--- status refresh ---')
+
 
 def run():
     """Run main or daemon."""
