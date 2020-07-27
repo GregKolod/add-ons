@@ -76,7 +76,6 @@ mappings = {
 
 
     "battery_ok": {
-        # "device_type": "binary_sensor",
         "device_type": "sensor",
         "object_suffix": "Battery",
         "config": {
@@ -84,8 +83,7 @@ mappings = {
             "name": "Battery",
             "unit_of_measurement": "%",
             "value_template": "{{  float(value|int) * 100 }}"
-            # "payload_on": "0",
-            # "payload_off": "1",
+
             }
         },
 
@@ -106,7 +104,7 @@ mappings = {
             "device_class": "moisture",
             "name": "Moisture",
             "unit_of_measurement": "%",
-            "value_template": "{{ value_json.moisture }}"
+            # "value_template": "{{ value_json.moisture }}"
             }
         },
 
@@ -117,7 +115,7 @@ mappings = {
             "device_class": "pressure",
             "name": "Pressure",
             "unit_of_measurement": "hPa",
-            "value_template": "{{ value_json.pressure_hPa }}"
+            # "value_template": "{{ value_json.pressure_hPa }}"
             }
         },
 
@@ -128,7 +126,7 @@ mappings = {
             "device_class": "weather",
             "name": "Wind Speed",
             "unit_of_measurement": "km/h",
-            "value_template": "{{ value_json.wind_speed_km_h }}"
+            # "value_template": "{{ value_json.wind_speed_km_h }}"
             }
         },
 
@@ -139,7 +137,7 @@ mappings = {
             "device_class": "weather",
             "name": "Wind Speed",
             "unit_of_measurement": "km/h",
-            "value_template": "{{ float(value_json.wind_speed_m_s) * 3.6 }}"
+            # "value_template": "{{ float(value_json.wind_speed_m_s) * 3.6 }}"
             }
         },
 
@@ -150,7 +148,7 @@ mappings = {
             "device_class": "weather",
             "name": "Gust Speed",
             "unit_of_measurement": "km/h",
-            "value_template": "{{ value_json.gust_speed_km_h }}"
+            # "value_template": "{{ value_json.gust_speed_km_h }}"
             }
         },
 
@@ -161,7 +159,7 @@ mappings = {
             "device_class": "weather",
             "name": "Gust Speed",
             "unit_of_measurement": "km/h",
-            "value_template": "{{ float(value_json.gust_speed_m_s) * 3.6 }}"
+            # "value_template": "{{ float(value_json.gust_speed_m_s) * 3.6 }}"
             }
         },
 
@@ -172,7 +170,7 @@ mappings = {
             "device_class": "weather",
             "name": "Wind Direction",
             "unit_of_measurement": "°",
-            "value_template": "{{ value_json.wind_dir_deg }}"
+            # "value_template": "{{ value_json.wind_dir_deg }}"
             }
         },
 
@@ -183,7 +181,7 @@ mappings = {
             "device_class": "weather",
             "name": "Rain Total",
             "unit_of_measurement": "mm",
-            "value_template": "{{ value_json.rain_mm }}"
+            # "value_template": "{{ value_json.rain_mm }}"
             }
         },
 
@@ -194,7 +192,7 @@ mappings = {
             "device_class": "weather",
             "name": "Rain Rate",
             "unit_of_measurement": "mm/h",
-            "value_template": "{{ value_json.rain_mm_h }}"
+            # "value_template": "{{ value_json.rain_mm_h }}"
             }
         },
 
@@ -288,7 +286,8 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     config["device"] = device
 
     mqttc.publish(path, json.dumps(config),  qos=0, retain=True)
-    print('--- status published ---')
+    print('--- status published ---', now)
+    print(instance, device)
 
 
 
