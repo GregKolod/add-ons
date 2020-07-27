@@ -16,7 +16,6 @@ from __future__ import print_function, with_statement
 import json
 import os
 import time
-
 import paho.mqtt.client as mqtt
 
 MQTT_HOST = os.environ['MQTT_HOST']
@@ -286,8 +285,9 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     config["device"] = device
 
     mqttc.publish(path, json.dumps(config),  qos=0, retain=True)
-    print('--- status published ---', now)
-    print(instance, device)
+    print('--- status published ---')
+    print(device)
+    # print(path, " : ", json.dumps(config))
 
 
 
