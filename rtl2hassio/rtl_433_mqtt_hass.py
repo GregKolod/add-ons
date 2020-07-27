@@ -286,9 +286,9 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     config["device"] = device
 
     mqttc.publish(path, json.dumps(config),  qos=0, retain=True)
-    print('--- status published ---',time.strftime("%b %d %Y %H:%M:%S", now))
-    print(device)
-    # print(path, " : ", json.dumps(config))
+    # print('--- status published ---',time.strftime("%b %d %Y %H:%M:%S", now))
+    # print(device)
+    print(path, " : ", json.dumps(config))
 
 
 
