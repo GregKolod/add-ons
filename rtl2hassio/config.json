@@ -11,8 +11,8 @@
   "options":
     {
     "mqtt_host": "192.168.1.66",
-    "mqtt_user": "HA",
-    "mqtt_password": "HomRas",
+    "mqtt_user": "user",
+    "mqtt_password": "pass",
     "mqtt_topic": "rtl_433",
     "mqtt_retain" : "true",
     "protocol": "-R 12 -R 19 -R 30 -R 35",
