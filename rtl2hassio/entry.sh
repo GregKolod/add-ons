@@ -6,7 +6,7 @@ set -e
 
 export LANG=C
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
-
+export LD_LIBRARY_PATH=/usr/local/lib64
 CONFIG_PATH=/data/options.json
 MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
 MQTT_USERNAME="$(jq --raw-output '.mqtt_user' $CONFIG_PATH)"
