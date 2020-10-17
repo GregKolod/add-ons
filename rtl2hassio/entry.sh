@@ -9,9 +9,9 @@ PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export LD_LIBRARY_PATH=/usr/local/lib64
 CONFIG_PATH=/data/options.json
 
-MQTT_HOST=$(bashio::services mqtt "host")
-MQTT_USER=$(bashio::services mqtt "username")
-MQTT_PASSWORD=$(bashio::services mqtt "password")
+MQTT_HOST=$(bashio::config "mqtt.server")
+MQTT_USER=$(bashio::config 'mqtt.user')
+MQTT_PASSWORD=$(bashio::config 'mqtt.password')
 
 #MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
 #MQTT_USERNAME="$(jq --raw-output '.mqtt_user' $CONFIG_PATH)"
