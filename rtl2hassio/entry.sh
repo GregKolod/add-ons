@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/with-contenv bashio
 
 # Exit immediately if a command exits with a non-zero status:
 set -e
