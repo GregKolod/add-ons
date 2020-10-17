@@ -1,4 +1,4 @@
-#!/usr/bin/env bashio
+#!/bin/sh
 
 # Exit immediately if a command exits with a non-zero status:
 set -e
@@ -9,13 +9,10 @@ PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export LD_LIBRARY_PATH=/usr/local/lib64
 CONFIG_PATH=/data/options.json
 
-MQTT_HOST=$(bashio::config "mqtt.server")
-MQTT_USER=$(bashio::config 'mqtt.user')
-MQTT_PASSWORD=$(bashio::config 'mqtt.password')
 
-#MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
-#MQTT_USERNAME="$(jq --raw-output '.mqtt_user' $CONFIG_PATH)"
-#MQTT_PASSWORD="$(jq --raw-output '.mqtt_password' $CONFIG_PATH)"
+MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
+MQTT_USERNAME="$(jq --raw-output '.mqtt_user' $CONFIG_PATH)"
+MQTT_PASSWORD="$(jq --raw-output '.mqtt_password' $CONFIG_PATH)"
 
 MQTT_TOPIC="$(jq --raw-output '.mqtt_topic' $CONFIG_PATH)"
 MQTT_RETAIN="$(jq --raw-output '.mqtt_retain' $CONFIG_PATH)"
