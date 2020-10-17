@@ -7,7 +7,7 @@
   "startup": "before",
   "arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
   "devices": ["/dev/bus/usb:/dev/bus/usb:rwm"],
-  "panel_icon": "mdi:radar"
+  "panel_icon": "mdi:radar",
   "boot": "auto",
   "options":
     {
