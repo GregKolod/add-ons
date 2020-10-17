@@ -1,6 +1,6 @@
 {
   "name": "RTL_433 to Hassio",
-  "version": "3.52",
+  "version": "3.53",
   "slug": "rtl2hassio",
   "description": "RTL_433 to Hassio with autodiscovery",
   "url": "https://github.com/GregKolod/add-ons",
@@ -8,6 +8,7 @@
   "arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
   "devices": ["/dev/bus/usb:/dev/bus/usb:rwm"],
   "panel_icon": "mdi:radar",
+  "panel_title": "SDR",
   "boot": "auto",
   "options":
     {
