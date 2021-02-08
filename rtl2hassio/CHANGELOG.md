@@ -1,5 +1,5 @@
 # Changelog
 
-## 3.5
+## 3.6
 
-- added changelog file
+- dostosoawniae do 2021.02.05
