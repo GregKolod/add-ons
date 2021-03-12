@@ -297,6 +297,11 @@ def bridge_event_to_hass(mqttc, topic, data):
     if "model" not in data:
         # not a device event
         return
+    
+    if "model" == "CM180":
+        # filtruj niechciane modele w protokole
+        return
+    
     manmodel = sanitize(data["model"])
 
     if "id" in data:
