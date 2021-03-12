@@ -300,8 +300,8 @@ def bridge_event_to_hass(mqttc, topic, data):
     
    
     manmodel = sanitize(data["model"])
-
-   if manmodel == "CM180":
+    
+    if manmodel == "CM180":
         # filtruj niechciane modele w protokole
         return
     
