@@ -28,7 +28,7 @@ DISCOVERY_PREFIX = os.environ['DISCOVERY_PREFIX']
 DISCOVERY_INTERVAL = os.environ['DISCOVERY_INTERVAL']
 
 print(os.environ)
-BLACK_LIST = os.environ.get('BLACK_LIST')
+BLACK_LIST = os.environ.get['BLACK_LIST']
 
 
 # Convert number environment variables to int
