@@ -352,9 +352,10 @@ def run():
     #  uid
     #  gid
     #  working_directory
-    print(os.environ)
+    
     rtl_433_bridge()
 
+print(os.environ)
 
 if __name__ == "__main__":
 
