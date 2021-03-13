@@ -1,9 +1,9 @@
-Configuration
-mqtt_host: 192.168.1.6
-mqtt_user: user
-mqtt_password: pass
-mqtt_topic: rtl_433
-mqtt_retain: '1'
-protocol: '-R 12 -R 19 -R 30 -R 35'
-discovery_prefix: homeassistant
-discovery_interval: 600
+Configuration <br>
+mqtt_host: 192.168.1.6 <br> 
+mqtt_user: user<br> 
+mqtt_password: pass<br> 
+mqtt_topic: rtl_433<br> 
+mqtt_retain: true <br> 
+protocol: '-R 12 -R 19 -R 30 -R 35'<br> 
+discovery_prefix: homeassistant<br> 
+discovery_interval: 600<br> 
