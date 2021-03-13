@@ -17,7 +17,7 @@
     "protocol": "-R 12 -R 19 -R 30 -R 35",
     "discovery_prefix": "homeassistant",
     "discovery_interval": 600,
-    "blacklisted_model" : "CM180"
+    "black_list" : "CM180"
   },
   "schema":
     {
@@ -29,7 +29,7 @@
     "protocol": "str",
     "discovery_prefix": "str",
     "discovery_interval": "int",
-    "blacklisted_model" : "CM180"
+    "black_list" : "str"
       
    }
 }
