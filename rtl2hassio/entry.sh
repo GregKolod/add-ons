@@ -19,7 +19,7 @@ MQTT_RETAIN="$(jq --raw-output '.mqtt_retain' $CONFIG_PATH)"
 PROTOCOL="$(jq --raw-output '.protocol' $CONFIG_PATH)"
 DISCOVERY_PREFIX="$(jq --raw-output '.discovery_prefix' $CONFIG_PATH)"
 DISCOVERY_INTERVAL="$(jq --raw-output '.discovery_interval' $CONFIG_PATH)"
-BLACK_LIST="$(jq --raw-output '.blacklisted_model' $CONFIG_PATH)"
+BLACK_LIST="$(jq --raw-output '.black_list' $CONFIG_PATH)"
 
 
 # Start the listener and enter an endless loop
