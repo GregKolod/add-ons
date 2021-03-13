@@ -16,7 +16,8 @@
     "mqtt_retain" : "true",
     "protocol": "-R 12 -R 19 -R 30 -R 35",
     "discovery_prefix": "homeassistant",
-    "discovery_interval": 600
+    "discovery_interval": 600,
+    "blacklisted_model" : "CM180"
   },
   "schema":
     {
@@ -27,7 +28,8 @@
     "mqtt_retain" : "str",
     "protocol": "str",
     "discovery_prefix": "str",
-    "discovery_interval": "int"
+    "discovery_interval": "int",
+    "blacklisted_model" : "CM180"
       
    }
 }
