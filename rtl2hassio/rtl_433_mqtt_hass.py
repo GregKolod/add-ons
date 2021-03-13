@@ -27,7 +27,7 @@ MQTT_TOPIC = os.environ['MQTT_TOPIC']
 DISCOVERY_PREFIX = os.environ['DISCOVERY_PREFIX']
 DISCOVERY_INTERVAL = os.environ['DISCOVERY_INTERVAL']
 
-print(os.environ)
+
 BLACK_LIST = os.environ['BLACK_LIST']
 
 
@@ -352,6 +352,7 @@ def run():
     #  uid
     #  gid
     #  working_directory
+    print(os.environ)
     rtl_433_bridge()
 
 
