@@ -28,7 +28,7 @@ DISCOVERY_PREFIX = os.environ['DISCOVERY_PREFIX']
 DISCOVERY_INTERVAL = os.environ['DISCOVERY_INTERVAL']
 
 
-BLACK_LIST = os.environ['BLACK_LIST']
+global BLACK_LIST = os.environ['BLACK_LIST']
 
 
 # Convert number environment variables to int
