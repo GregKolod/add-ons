@@ -27,6 +27,9 @@ MQTT_TOPIC = os.environ['MQTT_TOPIC']
 DISCOVERY_PREFIX = os.environ['DISCOVERY_PREFIX']
 DISCOVERY_INTERVAL = os.environ['DISCOVERY_INTERVAL']
 
+BLACK_LIST = os.environ['BLACK_LIST']
+
+
 # Convert number environment variables to int
 MQTT_PORT = int(MQTT_PORT)
 DISCOVERY_INTERVAL = int(DISCOVERY_INTERVAL)
@@ -301,7 +304,7 @@ def bridge_event_to_hass(mqttc, topic, data):
    
     manmodel = sanitize(data["model"])
     
-    if manmodel == "CM180":
+    if manmodel in BLACK_LIST:
         # filtruj niechciane modele w protokole
         return
     
