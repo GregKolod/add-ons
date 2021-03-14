@@ -29,7 +29,7 @@ DISCOVERY_INTERVAL = os.environ['DISCOVERY_INTERVAL']
 
 BLACK_LIST = os.environ['BLACK_LIST']
 
-blacklist = str(BLACK_LIST)
+
 # Convert number environment variables to int
 MQTT_PORT = int(MQTT_PORT)
 DISCOVERY_INTERVAL = int(DISCOVERY_INTERVAL)
@@ -301,12 +301,13 @@ def bridge_event_to_hass(mqttc, topic, data):
         # not a device event
         return
     
+    if data["model"] in BLACK_LIST:
+        # filtruj niechciane modele w protokole
+        return    
    
     manmodel = sanitize(data["model"])
     
-    if manmodel in blacklist:
-        # filtruj niechciane modele w protokole
-        return
+
     
     
     
