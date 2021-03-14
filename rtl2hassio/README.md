@@ -7,3 +7,5 @@ mqtt_retain: true <br>
 protocol: '-R 12 -R 19 -R 30 -R 35'<br> 
 discovery_prefix: homeassistant<br> 
 discovery_interval: 600<br> 
+black_list : "Oregon-CM180"
+
