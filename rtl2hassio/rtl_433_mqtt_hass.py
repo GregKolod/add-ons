@@ -355,7 +355,6 @@ def run():
     
     rtl_433_bridge()
 
-print(os.environ)
 
 if __name__ == "__main__":
 
