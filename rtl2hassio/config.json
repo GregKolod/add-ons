@@ -1,6 +1,6 @@
 {
   "name": "RTL_433 to Hassio",
-  "version": "4.163",
+  "version": "4.2",
   "slug": "rtl2hassio",
   "description": "RTL_433 to Hassio with autodiscovery",
   "url": "https://github.com/GregKolod/add-ons",
@@ -17,7 +17,7 @@
     "protocol": "-R 12 -R 19 -R 30 -R 35",
     "discovery_prefix": "homeassistant",
     "discovery_interval": 600,
-    "black_list" : "CM180"
+    "black_list" : "Oregon-CM180"
   },
   "schema":
     {
