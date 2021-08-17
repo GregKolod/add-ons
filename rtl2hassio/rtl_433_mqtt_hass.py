@@ -74,6 +74,7 @@ mappings = {
             "device_class": "temperature",
             "name": "Temperature",
             "unit_of_measurement": "°C",
+            "state_class": "measurement"
             }
         },
 
@@ -97,6 +98,7 @@ mappings = {
             "device_class": "humidity",
             "name": "Humidity",
             "unit_of_measurement": "%",
+            "state_class": "measurement"
             }
         },
 
