@@ -1,5 +1,6 @@
 Configuration <br>
-mqtt_host: 192.168.1.6 <br> 
+mqtt_host: 192.168.1.6 <br>
+mqtt_port: 1883 <br>
 mqtt_user: user<br> 
 mqtt_password: pass<br> 
 mqtt_topic: rtl_433<br> 
