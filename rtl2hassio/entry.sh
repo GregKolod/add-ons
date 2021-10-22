@@ -11,6 +11,7 @@ CONFIG_PATH=/data/options.json
 
 
 MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
+MQTT_PORT="$(jq --raw-output '.mqtt_port' $CONFIG_PATH)"
 MQTT_USERNAME="$(jq --raw-output '.mqtt_user' $CONFIG_PATH)"
 MQTT_PASSWORD="$(jq --raw-output '.mqtt_password' $CONFIG_PATH)"
 
