@@ -20,3 +20,4 @@ RUN chmod +x /start.sh
 VOLUME /application/config.yaml
 
 ENTRYPOINT ["/bin/sh", "-c", "/start.sh"]
+CMD [ "/run.sh" ]
