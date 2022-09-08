@@ -1,0 +1,11 @@
+name: "Hello world"
+description: "bt2mqtt to Hassio"
+version: "1.0.0"
+slug: "bt2mqtt"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
