@@ -1,8 +1,22 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# Copy data for add-on
-COPY start.sh /
-RUN chmod a+x /start.sh
+ENV DEBUG false
 
-CMD [ "/start.sh" ]
+RUN mkdir /application
+COPY . /application
+
+WORKDIR /application
+
+RUN apk add --no-cache tzdata bluez bluez-libs sudo bluez-deprecated                                  && \
+    apk add --no-cache --virtual build-dependencies git bluez-dev musl-dev make gcc glib-dev musl-dev && \
+    pip install --no-cache-dir -r requirements.txt                                                    && \
+    pip install --no-cache-dir `./gateway.py -r all`                                                  && \
+    apk del build-dependencies
+
+COPY ./start.sh /
+RUN chmod +x /start.sh
+
+VOLUME /application/config.yaml
+
+ENTRYPOINT ["/bin/sh", "-c", "/start.sh"]
