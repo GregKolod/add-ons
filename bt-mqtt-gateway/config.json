@@ -1,6 +1,6 @@
 {
   "name": "bt2mqtt to Hassio",
-  "version": ".22",
+  "version": ".221",
   "slug": "bt2mqtt",
   "description": "bt mqtt gateway for EQ3",
   "url": "https://github.com/GregKolod/add-ons/bt-mqtt-gateway",
