@@ -1,6 +1,6 @@
 name: "bt2mqtt to Hassio"
 description: "bt2mqtt to Hassio"
-version: "1.0.2"
+version: "1.0.3"
 slug: "bt2mqtt"
 init: false
 arch:
@@ -9,3 +9,15 @@ arch:
   - armhf
   - armv7
   - i386
+options:
+  beer: true
+  wine: true
+  liquor: false
+  name: "world"
+  year: 2017
+schema:
+  beer: bool
+  wine: bool
+  liquor: bool
+  name: str
+  year: int
