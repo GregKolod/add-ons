@@ -10,7 +10,7 @@ RUN apk add --no-cache tzdata bluez bluez-libs sudo bluez-deprecated            
     pip install --no-cache-dir `gateway.py -r all`                                                  && \
     apk del build-dependencies
 
-COPY ./start.sh /start.sh
+COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
 VOLUME /application/config.yaml
