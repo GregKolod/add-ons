@@ -1,4 +1,7 @@
-FROM python:3.8-alpine
+ARG BUILD_FROM
+FROM $BUILD_FROM
+
+ENV LANG C.UTF-8
 
 ENV DEBUG false
 
