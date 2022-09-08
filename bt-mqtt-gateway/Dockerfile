@@ -1,7 +1,7 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-ENV DEBUG false
+ENV DEBUG true
 
 RUN mkdir /application
 COPY . /application
