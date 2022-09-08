@@ -3,8 +3,6 @@ FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
-ENV DEBUG false
-
 
 RUN apk add --no-cache tzdata bluez bluez-libs sudo bluez-deprecated                                  && \
     apk add --no-cache --virtual build-dependencies git bluez-dev musl-dev make gcc glib-dev musl-dev && \
