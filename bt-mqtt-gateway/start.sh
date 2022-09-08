@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/with-contenv bashio
 
 if ! [ -f '/application/config.yaml' ]; then
     echo "There is no config.yaml! Check example config: https://github.com/zewelor/bt-mqtt-gateway/blob/master/config.yaml.example"
