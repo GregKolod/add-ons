@@ -1,10 +1,8 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-ENV LANG C.UTF-8
-
-
-RUN apk add --no-cache tzdata bluez bluez-libs sudo bluez-deprecated
-
+# Copy data for add-on
 COPY start.sh /
-RUN chmod +x /start.sh
+RUN chmod a+x /start.sh
+
+CMD [ "/start.sh" ]
