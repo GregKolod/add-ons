@@ -7,7 +7,10 @@ COPY . /application
 
 WORKDIR /application
 
-RUN apk add --no-cache tzdata bluez bluez-libs sudo bluez-deprecated
+RUN apk add --no-cache tzdata bluez bluez-libs sudo bluez-deprecated                                  && \
+    apk add --no-cache --virtual build-dependencies git bluez-dev musl-dev make gcc glib-dev musl-dev && \
+    pip install --no-cache-dir -r requirements.txt 
+  
 
 COPY start.sh /
 RUN chmod +x /start.sh
@@ -16,7 +19,3 @@ VOLUME /application/config.yaml
 
 ENTRYPOINT ["/bin/sh", "-c", "/start.sh"]
 
-COPY run.sh /
-RUN chmod a+x /run.sh
-
-CMD [ "/run.sh" ]
