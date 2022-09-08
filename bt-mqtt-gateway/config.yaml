@@ -1,6 +1,6 @@
-name: "Hello world"
+name: "bt2mqtt to Hassio"
 description: "bt2mqtt to Hassio"
-version: "1.0.0"
+version: "1.0.1"
 slug: "bt2mqtt"
 init: false
 arch:
