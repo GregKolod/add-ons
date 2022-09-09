@@ -1,6 +1,6 @@
 #!/bin/sh
 
-config_path=/share/bt-mqtt-gateway.yaml
+config_path=/share/config.yaml
 debug_path=/share/bt-mqtt-gateway-debug.txt
 DEBUG=true
 #config_path=$(bashio::config 'config_path')
