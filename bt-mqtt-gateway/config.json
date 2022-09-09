@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "slug": "bt-mqtt-gateway",
   "description": "Bluetooth-MQTT-Gateway",
-  "url": "https://github.com/FaserF/hassio-addons/tree/master/bt-mqtt-gateway",
+  "url": "https://github.com/GregKolod/add-ons/tree/master/bt-mqtt-gateway",
   "host_network": true,
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "startup": "services",
