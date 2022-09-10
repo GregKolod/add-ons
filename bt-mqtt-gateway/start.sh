@@ -25,7 +25,7 @@ fi
 cd /application
 if [ "$DEBUG" = 'true' ]; then
 	echo "Start bt-mqtt gateway in debug mode"
-	python3 ./gateway.py -d
+	#python3 ./gateway.py -d
 	status=$?
 	echo "Gateway died..."
 	exit $status
