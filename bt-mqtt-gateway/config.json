@@ -1,6 +1,6 @@
 {
   "name": "bt-mqtt-gateway",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "slug": "bt-mqtt-gateway",
   "description": "Bluetooth-MQTT-Gateway",
   "url": "https://github.com/GregKolod/add-ons/tree/master/bt-mqtt-gateway",
