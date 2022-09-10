@@ -14,7 +14,7 @@ if ! [ -f $config_path ]; then
 fi
 
 echo "Found config file at $config_path . Copying it now."
-cp $config_path /config.yaml
+cp $config_path /application/config.yaml
 
 #As I cant implement bashio right now, I am unable to use homeassistant's config variables. So we will do it with a text file.
 if [ -f $debug_path ]; then
