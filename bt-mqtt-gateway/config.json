@@ -13,7 +13,7 @@
   "ingress": false,
   "panel_icon": "mdi:bluetooth-transfer",
   "options": {
-    "config_path": "/share/bt-mqtt-gateway.yaml",
+    "config_path": "/share/config.yaml",
     "debug": "false"
   },
   "schema": {
