@@ -15,9 +15,9 @@ fi
 
 echo "Found config file at $config_path . Copying it now."
 echo $config_pat
-echo cat /application/config.yaml
-cp $config_path /application/config.yaml
 
+cp $config_path /application/config.yaml
+echo cat /application/config.yaml
 #As I cant implement bashio right now, I am unable to use homeassistant's config variables. So we will do it with a text file.
 if [ -f $debug_path ]; then
 	echo "Found $debug_path -> Enabling debug mode."
