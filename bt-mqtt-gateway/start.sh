@@ -1,23 +1,21 @@
 #!/bin/sh
 
-config_path=/share/config.yaml
+config_path=/share/bt-mqtt-gateway.yaml
 debug_path=/share/bt-mqtt-gateway-debug.txt
-DEBUG=true
+DEBUG=false
 #config_path=$(bashio::config 'config_path')
 #DEBUG=$(bashio::config 'debug')
 
 if ! [ -f $config_path ]; then
 	echo "There is no $config_path file! Please edit /share/bt-mqtt-gateway.yaml.example and rename it afterwards."
 	echo "Do edit it before restarting!!!!!!!"
-	cp /application/config.yaml.example /share/config.yaml.example
+	cp /application/config.yaml.example /share/bt-mqtt-gateway.yaml.example
 	exit 1
 fi
 
 echo "Found config file at $config_path . Copying it now."
-echo $config_pat
+cp -v $config_path /config.yaml
 
-cp $config_path /application/config.yaml
-echo cat /application/config.yaml
 #As I cant implement bashio right now, I am unable to use homeassistant's config variables. So we will do it with a text file.
 if [ -f $debug_path ]; then
 	echo "Found $debug_path -> Enabling debug mode."
