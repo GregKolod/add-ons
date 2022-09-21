@@ -25,6 +25,7 @@ if [ -f $debug_path ]; then
 fi
 
 cd /application
+sed -i -e 's|"config.yaml"|"../config.yaml"|' ./config.py
 if [ "$DEBUG" = 'true' ]; then
 	echo "Start bt-mqtt gateway in debug mode"
 	python3 ./gateway.py -d
