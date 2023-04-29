@@ -31,11 +31,11 @@ echo "MQTT User =" $MQTT_USERNAME
 echo "MQTT Password =" $MQTT_PASSWORD
 echo "MQTT Topic =" $MQTT_TOPIC
 echo "MQTT Retain =" $MQTT_RETAIN
-echo "PROTOCOL =" $PROTOCOL
+echo "PARAM =" $PROTOCOL
 echo "DISCOVERY_PREFIX =" $DISCOVERY_PREFIX
 echo "DISCOVERY_INTERVAL =" $DISCOVERY_INTERVAL
 echo "BLACK_LIST =" $BLACK_LIST
 
-rtl_433
+rtl_433 $PROTOCOL
 
 # rtl_433  $PROTOCOL -C si  -F mqtt://$MQTT_HOST:$MQTT_PORT,user=$MQTT_USERNAME,pass=$MQTT_PASSWORD,retain=$MQTT_RETAIN,events=$MQTT_TOPIC/events,states=$MQTT_TOPIC/states,devices=$MQTT_TOPIC[/model][/id][/channel:0]  -M time -M protocol -M level | /scripts/rtl_433_mqtt_hass.py 
