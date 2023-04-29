@@ -1,8 +1,8 @@
 {
-  "name": "RTL_433 to Hassio",
-  "version": "4.53",
+  "name": "RTL_433 to Hassio DEV",
+  "version": "0.1",
   "slug": "rtl2hassio",
-  "description": "RTL_433 to Hassio with autodiscovery",
+  "description": "RTL_433 to Hassio with autodiscovery DEV",
   "url": "https://github.com/GregKolod/add-ons",
   "arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
   "usb": true,
