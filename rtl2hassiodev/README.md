@@ -10,3 +10,5 @@ discovery_prefix: homeassistant<br>
 discovery_interval: 600<br> 
 black_list : "Oregon-CM180"
 
+
+rtl_433 -f 868M -s 1024k
