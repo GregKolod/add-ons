@@ -51,12 +51,12 @@ mappings = {
         "config": {
             "device_class": "window",
             "name": "Windows State",
-            "value_template": '{{ value[-2:] }}',
-            "payload_off": "XZ",
+            "value_template": '{{ value[-1:] }}',
+            "payload_off": "Z",
             "payload_on": "01"
         }
     },
-
+    
     "rssi": {
         "device_type": "sensor",
         "object_suffix": "RSSI",
