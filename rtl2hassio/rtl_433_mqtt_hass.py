@@ -56,17 +56,6 @@ mappings = {
             "payload_on": "01"
         }
     },
-    "tristate": {
-        "device_type": "binary_sensor",
-        "object_suffix": "State",
-        "config": {
-            "device_class": "Remote",
-            "name": "Remote Control",
-            "value_template": '{{ value[-4:] }}',
-            "payload_on": "ZZZZ"
-       
-        }
-    },
     
     "rssi": {
         "device_type": "sensor",
