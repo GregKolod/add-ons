@@ -51,9 +51,20 @@ mappings = {
         "config": {
             "device_class": "window",
             "name": "Windows State",
-            "value_template": '{{ value[-1:] }}',
-            "payload_off": "Z",
+            "value_template": '{{ value[-2:] }}',
+            "payload_off": "XZ",
             "payload_on": "01"
+        }
+    },
+    "tristate": {
+        "device_type": "binary_sensor",
+        "object_suffix": "State",
+        "config": {
+            "device_class": "Remote",
+            "name": "Remote Control",
+            "value_template": '{{ value[-4:] }}',
+            "payload_on": "ZZZZ"
+       
         }
     },
     
