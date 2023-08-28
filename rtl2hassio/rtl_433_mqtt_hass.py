@@ -69,11 +69,12 @@ mappings = {
 
     "temperature_C": {
         "device_type": "sensor",
-        "object_suffix": "Temperature",
+        "object_suffix": "T",
         "config": {
             "device_class": "temperature",
             "name": "Temperature",
             "unit_of_measurement": "°C",
+            "value_template": "{{ value|float|round(1) }}",
             "state_class": "measurement"
             }
         },
