@@ -255,12 +255,12 @@ def sanitize(text):
             .replace("&", ""))
 
 
-def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
+def publish_config(mqttc, topic, model, instance, channel, mapping):
     """Publish Home Assistant auto discovery data."""
     global discovery_timeouts
 
     device_type = mapping["device_type"]
-    object_id = "_".join([manmodel.replace("-", "_"), instance])
+    object_id = "_".join([model.replace("-", "_"), instance])
     object_suffix = mapping["object_suffix"]
     object_name = "-".join([object_id, object_suffix])
 
@@ -302,7 +302,7 @@ def bridge_event_to_hass(mqttc, topic, data):
         # filtruj niechciane modele w protokole
         return    
    
-    manmodel = sanitize(data["model"])
+    model = sanitize(data["model"])
     
 
     
@@ -322,7 +322,7 @@ def bridge_event_to_hass(mqttc, topic, data):
     # detect known attributes
     for key in data.keys():
         if key in mappings:
-            publish_config(mqttc, key, manmodel, instance, channel, mappings[key])
+            publish_config(mqttc, key, model, instance, channel, mappings[key])
             # print(key)
 
 
