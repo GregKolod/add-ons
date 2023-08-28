@@ -37,36 +37,6 @@ DISCOVERY_INTERVAL = int(DISCOVERY_INTERVAL)
 discovery_timeouts = {}
 
 mappings = {
-    "protocol": {
-        "device_type": "sensor",
-        "object_suffix": "Protocol",
-        "config": {
-            "name": "Protocol",
-            }
-        },
-
-    "tristate": {
-        "device_type": "binary_sensor",
-        "object_suffix": "State",
-        "config": {
-            "device_class": "window",
-            "name": "Windows State",
-            "value_template": '{{ value[-2:] }}',
-            "payload_off": "XZ",
-            "payload_on": "01"
-        }
-    },
-    
-    "rssi": {
-        "device_type": "sensor",
-        "object_suffix": "RSSI",
-         "config": {
-            "name": "RSSI",
-            "unit_of_measurement": "dB",
-             "value_template": "{{ value|float|round(2) }}"
-        }
-    },
-
     "temperature_C": {
         "device_type": "sensor",
         "object_suffix": "T",
@@ -76,8 +46,57 @@ mappings = {
             "unit_of_measurement": "°C",
             "value_template": "{{ value|float|round(1) }}",
             "state_class": "measurement"
-            }
-        },
+        }
+    },
+    "temperature_1_C": {
+        "device_type": "sensor",
+        "object_suffix": "T1",
+        "config": {
+            "device_class": "temperature",
+            "name": "Temperature 1",
+            "unit_of_measurement": "°C",
+            "value_template": "{{ value|float|round(1) }}",
+            "state_class": "measurement"
+        }
+    },
+    "temperature_2_C": {
+        "device_type": "sensor",
+        "object_suffix": "T2",
+        "config": {
+            "device_class": "temperature",
+            "name": "Temperature 2",
+            "unit_of_measurement": "°C",
+            "value_template": "{{ value|float|round(1) }}",
+            "state_class": "measurement"
+        }
+    },
+    "temperature_F": {
+        "device_type": "sensor",
+        "object_suffix": "F",
+        "config": {
+            "device_class": "temperature",
+            "name": "Temperature",
+            "unit_of_measurement": "°F",
+            "value_template": "{{ value|float|round(1) }}",
+            "state_class": "measurement"
+        }
+    },
+
+    # This diagnostic sensor is useful to see when a device last sent a value,
+    # even if the value didn't change.
+    # https://community.home-assistant.io/t/send-metrics-to-influxdb-at-regular-intervals/9096
+    # https://github.com/home-assistant/frontend/discussions/13687
+    "time": {
+        "device_type": "sensor",
+        "object_suffix": "UTC",
+        "config": {
+            "device_class": "timestamp",
+            "name": "Timestamp",
+            "entity_category": "diagnostic",
+            "enabled_by_default": False,
+            "icon": "mdi:clock-in"
+        }
+    },
 
     "battery_ok": {
         "device_type": "sensor",
@@ -91,7 +110,7 @@ mappings = {
             "entity_category": "diagnostic"
         }
     },
-    
+
     "humidity": {
         "device_type": "sensor",
         "object_suffix": "H",
@@ -101,125 +120,468 @@ mappings = {
             "unit_of_measurement": "%",
             "value_template": "{{ value|float }}",
             "state_class": "measurement"
-            }
-        },
+        }
+    },
+    "humidity_1": {
+        "device_type": "sensor",
+        "object_suffix": "H1",
+        "config": {
+            "device_class": "humidity",
+            "name": "Humidity 1",
+            "unit_of_measurement": "%",
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
+    "humidity_2": {
+        "device_type": "sensor",
+        "object_suffix": "H2",
+        "config": {
+            "device_class": "humidity",
+            "name": "Humidity 2",
+            "unit_of_measurement": "%",
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
 
     "moisture": {
         "device_type": "sensor",
-        "object_suffix": "Moisture",
+        "object_suffix": "H",
         "config": {
-            "device_class": "moisture",
+            "device_class": "humidity",
             "name": "Moisture",
             "unit_of_measurement": "%",
-            # "value_template": "{{ value_json.moisture }}"
-            }
-        },
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
 
     "pressure_hPa": {
         "device_type": "sensor",
-        "object_suffix": "Pressure",
+        "object_suffix": "P",
         "config": {
             "device_class": "pressure",
             "name": "Pressure",
             "unit_of_measurement": "hPa",
-            # "value_template": "{{ value_json.pressure_hPa }}"
-            }
-        },
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
+
+    "pressure_kPa": {
+        "device_type": "sensor",
+        "object_suffix": "P",
+        "config": {
+            "device_class": "pressure",
+            "name": "Pressure",
+            "unit_of_measurement": "kPa",
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
 
     "wind_speed_km_h": {
         "device_type": "sensor",
         "object_suffix": "WS",
         "config": {
-            "device_class": "weather",
+            "device_class": "wind_speed",
             "name": "Wind Speed",
             "unit_of_measurement": "km/h",
-            # "value_template": "{{ value_json.wind_speed_km_h }}"
-            }
-        },
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
+
+    "wind_avg_km_h": {
+        "device_type": "sensor",
+        "object_suffix": "WS",
+        "config": {
+            "device_class": "wind_speed",
+            "name": "Wind Speed",
+            "unit_of_measurement": "km/h",
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
+
+    "wind_avg_mi_h": {
+        "device_type": "sensor",
+        "object_suffix": "WS",
+        "config": {
+            "device_class": "wind_speed",
+            "name": "Wind Speed",
+            "unit_of_measurement": "mi/h",
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
+
+    "wind_avg_m_s": {
+        "device_type": "sensor",
+        "object_suffix": "WS",
+        "config": {
+            "device_class": "wind_speed",
+            "name": "Wind Average",
+            "unit_of_measurement": "km/h",
+            "value_template": "{{ (float(value|float) * 3.6) | round(2) }}",
+            "state_class": "measurement"
+        }
+    },
 
     "wind_speed_m_s": {
         "device_type": "sensor",
         "object_suffix": "WS",
         "config": {
-            "device_class": "weather",
+            "device_class": "wind_speed",
             "name": "Wind Speed",
             "unit_of_measurement": "km/h",
-            # "value_template": "{{ float(value_json.wind_speed_m_s) * 3.6 }}"
-            }
-        },
+            "value_template": "{{ float(value|float) * 3.6 }}",
+            "state_class": "measurement"
+        }
+    },
 
     "gust_speed_km_h": {
         "device_type": "sensor",
         "object_suffix": "GS",
         "config": {
-            "device_class": "weather",
+            "device_class": "wind_speed",
             "name": "Gust Speed",
             "unit_of_measurement": "km/h",
-            # "value_template": "{{ value_json.gust_speed_km_h }}"
-            }
-        },
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
+
+    "wind_max_km_h": {
+        "device_type": "sensor",
+        "object_suffix": "GS",
+        "config": {
+            "device_class": "wind_speed",
+            "name": "Wind max speed",
+            "unit_of_measurement": "km/h",
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
+
+    "wind_max_m_s": {
+        "device_type": "sensor",
+        "object_suffix": "GS",
+        "config": {
+            "device_class": "wind_speed",
+            "name": "Wind max",
+            "unit_of_measurement": "km/h",
+            "value_template": "{{ (float(value|float) * 3.6) | round(2) }}",
+            "state_class": "measurement"
+        }
+    },
 
     "gust_speed_m_s": {
         "device_type": "sensor",
         "object_suffix": "GS",
         "config": {
-            "device_class": "weather",
+            "device_class": "wind_speed",
             "name": "Gust Speed",
             "unit_of_measurement": "km/h",
-            # "value_template": "{{ float(value_json.gust_speed_m_s) * 3.6 }}"
-            }
-        },
+            "value_template": "{{ float(value|float) * 3.6 }}",
+            "state_class": "measurement"
+        }
+    },
 
     "wind_dir_deg": {
         "device_type": "sensor",
         "object_suffix": "WD",
         "config": {
-            "device_class": "weather",
             "name": "Wind Direction",
             "unit_of_measurement": "°",
-            # "value_template": "{{ value_json.wind_dir_deg }}"
-            }
-        },
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
 
     "rain_mm": {
         "device_type": "sensor",
         "object_suffix": "RT",
         "config": {
-            "device_class": "weather",
+            "device_class": "precipitation",
             "name": "Rain Total",
             "unit_of_measurement": "mm",
-            # "value_template": "{{ value_json.rain_mm }}"
-            }
-        },
+            "value_template": "{{ value|float|round(2) }}",
+            "state_class": "total_increasing"
+        }
+    },
 
-    "rain_mm_h": {
+    "rain_rate_mm_h": {
         "device_type": "sensor",
         "object_suffix": "RR",
         "config": {
-            "device_class": "weather",
+            "device_class": "precipitation_intensity",
             "name": "Rain Rate",
             "unit_of_measurement": "mm/h",
-            # "value_template": "{{ value_json.rain_mm_h }}"
-            }
-        },
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
 
-    # motion...
+    "rain_in": {
+        "device_type": "sensor",
+        "object_suffix": "RT",
+        "config": {
+            "device_class": "precipitation",
+            "name": "Rain Total",
+            "unit_of_measurement": "mm",
+            "value_template": "{{ (float(value|float) * 25.4) | round(2) }}",
+            "state_class": "total_increasing"
+        }
+    },
 
-    # switches...
+    "rain_rate_in_h": {
+        "device_type": "sensor",
+        "object_suffix": "RR",
+        "config": {
+            "device_class": "precipitation_intensity",
+            "name": "Rain Rate",
+            "unit_of_measurement": "mm/h",
+            "value_template": "{{ (float(value|float) * 25.4) | round(2) }}",
+            "state_class": "measurement"
+        }
+    },
+
+    "tamper": {
+        "device_type": "binary_sensor",
+        "object_suffix": "tamper",
+        "config": {
+            "device_class": "safety",
+            "force_update": "true",
+            "payload_on": "1",
+            "payload_off": "0",
+            "entity_category": "diagnostic"
+        }
+    },
+
+    "alarm": {
+        "device_type": "binary_sensor",
+        "object_suffix": "alarm",
+        "config": {
+            "device_class": "safety",
+            "force_update": "true",
+            "payload_on": "1",
+            "payload_off": "0",
+            "entity_category": "diagnostic"
+        }
+    },
+
+    "rssi": {
+        "device_type": "sensor",
+        "object_suffix": "rssi",
+        "config": {
+            "device_class": "signal_strength",
+            "unit_of_measurement": "dB",
+            "value_template": "{{ value|float|round(2) }}",
+            "state_class": "measurement",
+            "entity_category": "diagnostic"
+        }
+    },
+
+    "snr": {
+        "device_type": "sensor",
+        "object_suffix": "snr",
+        "config": {
+            "device_class": "signal_strength",
+            "unit_of_measurement": "dB",
+            "value_template": "{{ value|float|round(2) }}",
+            "state_class": "measurement",
+            "entity_category": "diagnostic"
+        }
+    },
+
+    "noise": {
+        "device_type": "sensor",
+        "object_suffix": "noise",
+        "config": {
+            "device_class": "signal_strength",
+            "unit_of_measurement": "dB",
+            "value_template": "{{ value|float|round(2) }}",
+            "state_class": "measurement",
+            "entity_category": "diagnostic"
+        }
+    },
 
     "depth_cm": {
         "device_type": "sensor",
         "object_suffix": "D",
         "config": {
-            "device_class": "depth",
             "name": "Depth",
             "unit_of_measurement": "cm",
-            "value_template": "{{ value_json.depth_cm }}"
-            }
-        },
-    }
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
 
+    "power_W": {
+        "device_type": "sensor",
+        "object_suffix": "watts",
+        "config": {
+            "device_class": "power",
+            "name": "Power",
+            "unit_of_measurement": "W",
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
+  
+    "energy_kWh": {
+        "device_type": "sensor",
+        "object_suffix": "kwh",
+        "config": {
+            "device_class": "power",
+            "name": "Energy",
+            "unit_of_measurement": "kWh",
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
+  
+    "current_A": {
+        "device_type": "sensor",
+        "object_suffix": "A",
+        "config": {
+            "device_class": "power",
+            "name": "Current",
+            "unit_of_measurement": "A",
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
+  
+    "voltage_V": {
+        "device_type": "sensor",
+        "object_suffix": "V",
+        "config": {
+            "device_class": "power",
+            "name": "Voltage",
+            "unit_of_measurement": "V",
+            "value_template": "{{ value|float }}",
+            "state_class": "measurement"
+        }
+    },
 
+    "light_lux": {
+        "device_type": "sensor",
+        "object_suffix": "lux",
+        "config": {
+            "name": "Outside Luminance",
+            "unit_of_measurement": "lux",
+            "value_template": "{{ value|int }}",
+            "state_class": "measurement"
+        }
+    },
+    "lux": {
+        "device_type": "sensor",
+        "object_suffix": "lux",
+        "config": {
+            "name": "Outside Luminance",
+            "unit_of_measurement": "lux",
+            "value_template": "{{ value|int }}",
+            "state_class": "measurement"
+        }
+    },
+
+    "uv": {
+        "device_type": "sensor",
+        "object_suffix": "uv",
+        "config": {
+            "name": "UV Index",
+            "unit_of_measurement": "UV Index",
+            "value_template": "{{ value|int }}",
+            "state_class": "measurement"
+        }
+    },
+    "uvi": {
+        "device_type": "sensor",
+        "object_suffix": "uvi",
+        "config": {
+            "name": "UV Index",
+            "unit_of_measurement": "UV Index",
+            "value_template": "{{ value|int }}",
+            "state_class": "measurement"
+        }
+    },
+
+    "storm_dist": {
+        "device_type": "sensor",
+        "object_suffix": "stdist",
+        "config": {
+            "name": "Lightning Distance",
+            "unit_of_measurement": "mi",
+            "value_template": "{{ value|int }}",
+            "state_class": "measurement"
+        }
+    },
+
+    "strike_distance": {
+        "device_type": "sensor",
+        "object_suffix": "stdist",
+        "config": {
+            "name": "Lightning Distance",
+            "unit_of_measurement": "mi",
+            "value_template": "{{ value|int }}",
+            "state_class": "measurement"
+        }
+    },
+
+    "strike_count": {
+        "device_type": "sensor",
+        "object_suffix": "strcnt",
+        "config": {
+            "name": "Lightning Strike Count",
+            "value_template": "{{ value|int }}",
+            "state_class": "total_increasing"
+        }
+    },
+
+    "consumption_data": {
+        "device_type": "sensor",
+        "object_suffix": "consumption",
+        "config": {
+            "name": "SCM Consumption Value",
+            "value_template": "{{ value|int }}",
+            "state_class": "total_increasing",
+        }
+    },
+  
+    "consumption": {
+        "device_type": "sensor",
+        "object_suffix": "consumption",
+        "config": {
+            "name": "SCMplus Consumption Value",
+            "value_template": "{{ value|int }}",
+            "state_class": "total_increasing",
+        }
+    },
+
+    "channel": {
+        "device_type": "device_automation",
+        "object_suffix": "CH",
+        "config": {
+           "automation_type": "trigger",
+           "type": "button_short_release",
+           "subtype": "button_1",
+        }
+    },
+
+    "button": {
+        "device_type": "device_automation",
+        "object_suffix": "BTN",
+        "config": {
+           "automation_type": "trigger",
+           "type": "button_short_release",
+           "subtype": "button_1",
+        }
+    },
+
+}
 def mqtt_connect(client, userdata, flags, rc):
     """Callback for MQTT connects."""
     print("MQTT connected: " + mqtt.connack_string(rc))
