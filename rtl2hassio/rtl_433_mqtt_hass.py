@@ -585,6 +585,9 @@ mappings = {
     },
 
 }
+
+TOPIC_PARSE_RE = re.compile(r'\[(?P<slash>/?)(?P<token>[^\]:]+):?(?P<default>[^\]:]*)\]')
+
 def mqtt_connect(client, userdata, flags, rc):
     """Callback for MQTT connects."""
     print("MQTT connected: " + mqtt.connack_string(rc))
