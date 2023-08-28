@@ -262,6 +262,7 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     device_type = mapping["device_type"]
     object_id = "_".join([manmodel.replace("-", "_"), instance])
     object_suffix = mapping["object_suffix"]
+    object_name = "-".join([object_id, object_suffix])
 
     path = "/".join([DISCOVERY_PREFIX, device_type, object_id, object_name, "config"])
 
