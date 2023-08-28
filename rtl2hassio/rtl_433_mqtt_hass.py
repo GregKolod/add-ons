@@ -275,21 +275,15 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     discovery_timeouts[path] = now + DISCOVERY_INTERVAL
 
     config = mapping["config"].copy()
-    config["state_topic"] = "/".join([MQTT_TOPIC, manmodel, instance, channel, topic])
-    config["name"] = " ".join([manmodel.replace("-", " "), instance, object_suffix])
-    config["unique_id"] = "".join(["rtl433", device_type, instance, object_suffix])
-    config["availability_topic"] = "/".join([MQTT_TOPIC, "status"])
-
-    # add Home Assistant device info
-
-    manufacturer, model = manmodel.split("-", 1)
-
-    device = {}
-    device["identifiers"] = instance
-    device["name"] = instance
-    device["model"] = model
-    device["manufacturer"] = manufacturer
-    config["device"] = device
+    if device_type == 'device_automation':
+        config["topic"] = topic
+        config["platform"] = 'mqtt'
+    else:
+        readable_name = mapping["config"]["name"] if "name" in mapping["config"] else key
+        config["state_topic"] = topic
+        config["unique_id"] = object_name
+        config["name"] = readable_name
+    config["device"] = { "identifiers": [object_id], "name": object_id, "model": model, "manufacturer": "rtl_433" }
 
     mqttc.publish(path, json.dumps(config),  qos=0, retain=True)
 
