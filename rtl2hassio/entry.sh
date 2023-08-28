@@ -38,4 +38,4 @@ echo "BLACK_LIST =" $BLACK_LIST
 
 # rtl_433  $PROTOCOL -C si  -F mqtt://$MQTT_HOST:$MQTT_PORT,user=$MQTT_USERNAME,pass=$MQTT_PASSWORD,retain=$MQTT_RETAIN,events=$MQTT_TOPIC/events,states=$MQTT_TOPIC/states,devices=$MQTT_TOPIC[/model][/id][/channel:0]  -M time -M protocol -M level | /scripts/rtl_433_mqtt_hass.py 
 # rtl_433  $PROTOCOL -C si  -F mqtt://$MQTT_HOST:$MQTT_PORT,user=$MQTT_USERNAME,pass=$MQTT_PASSWORD,retain=$MQTT_RETAIN,events=$MQTT_TOPIC/events,states=$MQTT_TOPIC/states,devices=$MQTT_TOPIC[/type][/model][/subtype][/channel][/id] -M time -M protocol -M level | /scripts/rtl_433_mqtt_hass.py 
-  rtl_433  $PROTOCOL -C si  -M newmodel -F mqtt://$MQTT_HOST:$MQTT_PORT,user=$MQTT_USERNAME,pass=$MQTT_PASSWORD,retain=$MQTT_RETAIN  | /scripts/rtl_433_mqtt_hass.py -d
+  rtl_433  $PROTOCOL -C si  -M newmodel -F mqtt://$MQTT_HOST:$MQTT_PORT,user=$MQTT_USERNAME,pass=$MQTT_PASSWORD,retain=$MQTT_RETAIN  | /scripts/rtl_433_mqtt_hass.py
