@@ -910,11 +910,11 @@ if __name__ == "__main__":
 
     parser.add_argument("-d", "--debug", action="store_true")
     parser.add_argument("-q", "--quiet", action="store_true")
-    parser.add_argument("-u", "--user", type=str, help="MQTT username")
-    parser.add_argument("-P", "--password", type=str, help="MQTT password")
-    parser.add_argument("-H", "--host", type=str, default="127.0.0.1",
+    parser.add_argument("-u", "--user", type=str, help="MQTT username", default=MQTT_USERNAME)
+    parser.add_argument("-P", "--password", type=str, help="MQTT password", default=MQTT_PASSWORD)
+    parser.add_argument("-H", "--host", type=str, default=MQTT_HOST,
                         help="MQTT hostname to connect to (default: %(default)s)")
-    parser.add_argument("-p", "--port", type=int, default=1883,
+    parser.add_argument("-p", "--port", type=int, default=MQTT_PORT,
                         help="MQTT port (default: %(default)s)")
     parser.add_argument("-c", "--ca_cert", type=str, help="MQTT TLS CA certificate path")
     parser.add_argument("-r", "--retain", action="store_true")
