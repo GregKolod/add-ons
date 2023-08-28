@@ -170,6 +170,18 @@ mappings = {
             "state_class": "measurement"
         }
     },
+    "tristate": {
+        "device_type": "binary_sensor",
+        "object_suffix": "State",
+        "config": {
+            "device_class": "safety",
+            "name": "Windows State",
+            "value_template": '{{ value[-2:] }}',
+            "payload_off": "XZ",
+            "payload_on": "01",
+            "entity_category": "diagnostic"
+        }
+    },
 
     # This diagnostic sensor is useful to see when a device last sent a value,
     # even if the value didn't change.
