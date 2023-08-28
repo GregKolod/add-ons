@@ -288,7 +288,7 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     device["name"] = instance
     device["model"] = model
     device["manufacturer"] = manufacturer
-    config["device"] = { "identifiers": [object_id], "name": object_id, "model": model, "manufacturer": "rtl_433" }
+    config["device"] = device
 
     mqttc.publish(path, json.dumps(config),  qos=0, retain=True)
 
