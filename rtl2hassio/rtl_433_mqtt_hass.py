@@ -618,8 +618,33 @@ def sanitize(text):
             .replace(".", "_")
             .replace("&", ""))
 
+def rtl_433_device_info(data, topic_prefix):
+    """Return rtl_433 device topic to subscribe to for a data element, based on the
+    rtl_433 device topic argument, as well as the device identifier"""
 
-def publish_config(mqttc, topic, model, instance, channel, mapping):
+    path_elements = []
+    id_elements = []
+    last_match_end = 0
+    # The default for args.device_topic_suffix is the same topic structure
+    # as set by default in rtl433 config
+    for match in re.finditer(TOPIC_PARSE_RE, args.device_topic_suffix):
+        path_elements.append(args.device_topic_suffix[last_match_end:match.start()])
+        key = match.group(2)
+        if key in data:
+            # If we have this key, prepend a slash if needed
+            if match.group(1):
+                path_elements.append('/')
+            element = sanitize(str(data[key]))
+            path_elements.append(element)
+            id_elements.append(element)
+        elif match.group(3):
+            path_elements.append(match.group(3))
+        last_match_end = match.end()
+
+    path = ''.join(list(filter(lambda item: item, path_elements)))
+    id = '-'.join(id_elements)
+    return (f"{topic_prefix}/{path}", id)
+def publish_config(mqttc, topic, model, object_id, mapping, key=None):
     """Publish Home Assistant auto discovery data."""
     global discovery_timeouts
 
