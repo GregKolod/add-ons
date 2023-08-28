@@ -644,26 +644,31 @@ def rtl_433_device_info(data, topic_prefix):
     path = ''.join(list(filter(lambda item: item, path_elements)))
     id = '-'.join(id_elements)
     return (f"{topic_prefix}/{path}", id)
+    
 def publish_config(mqttc, topic, model, object_id, mapping, key=None):
     """Publish Home Assistant auto discovery data."""
     global discovery_timeouts
 
     device_type = mapping["device_type"]
-    object_id = "_".join([model.replace("-", "_"), instance])
     object_suffix = mapping["object_suffix"]
     object_name = "-".join([object_id, object_suffix])
 
-    path = "/".join([DISCOVERY_PREFIX, device_type, object_id, object_name, "config"])
+    path = "/".join([args.discovery_prefix, device_type, object_id, object_name, "config"])
 
     # check timeout
     now = time.time()
     if path in discovery_timeouts:
         if discovery_timeouts[path] > now:
-            return
+            logging.debug("Discovery timeout in the future for: " + path)
+            return False
 
-    discovery_timeouts[path] = now + DISCOVERY_INTERVAL
+    discovery_timeouts[path] = now + args.discovery_interval
 
     config = mapping["config"].copy()
+
+    # Device Automation configuration is in a different structure compared to
+    # all other mqtt discovery types.
+    # https://www.home-assistant.io/integrations/device_trigger.mqtt/
     if device_type == 'device_automation':
         config["topic"] = topic
         config["platform"] = 'mqtt'
@@ -674,9 +679,17 @@ def publish_config(mqttc, topic, model, object_id, mapping, key=None):
         config["name"] = readable_name
     config["device"] = { "identifiers": [object_id], "name": object_id, "model": model, "manufacturer": "rtl_433" }
 
-    mqttc.publish(path, json.dumps(config),  qos=0, retain=True)
+    if args.force_update:
+        config["force_update"] = "true"
 
-    # print(path, " : ", json.dumps(config))
+    if args.expire_after:
+        config["expire_after"] = args.expire_after
+
+    logging.debug(path + ":" + json.dumps(config))
+
+    mqttc.publish(path, json.dumps(config), retain=args.retain)
+
+    return True
 
 
 
