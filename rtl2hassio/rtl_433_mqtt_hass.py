@@ -263,7 +263,7 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     object_id = "_".join([manmodel.replace("-", "_"), instance])
     object_suffix = mapping["object_suffix"]
 
-    path = "/".join([DISCOVERY_PREFIX, device_type, object_id, object_suffix, "config"])
+    path = "/".join([DISCOVERY_PREFIX, device_type, object_id, object_name, "config"])
 
     # check timeout
     now = time.time()
@@ -288,7 +288,7 @@ def publish_config(mqttc, topic, manmodel, instance, channel, mapping):
     device["name"] = instance
     device["model"] = model
     device["manufacturer"] = manufacturer
-    config["device"] = device
+    config["device"] = { "identifiers": [object_id], "name": object_id, "model": model, "manufacturer": "rtl_433" }
 
     mqttc.publish(path, json.dumps(config),  qos=0, retain=True)
 
