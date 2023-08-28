@@ -691,41 +691,58 @@ def publish_config(mqttc, topic, model, object_id, mapping, key=None):
 
     return True
 
-
-
-def bridge_event_to_hass(mqttc, topic, data):
+def bridge_event_to_hass(mqttc, topic_prefix, data):
     """Translate some rtl_433 sensor data to Home Assistant auto discovery."""
 
     if "model" not in data:
         # not a device event
+        logging.debug("Model is not defined. Not sending event to Home Assistant.")
         return
     
     if data["model"] in BLACK_LIST:
         # filtruj niechciane modele w protokole
-        return    
-   
-    model = sanitize(data["model"])
-    
+        return        
+        
 
-    
-    
-    
-    if "id" in data:
-        instance = str(data["id"])
-    if not instance:
+    model = sanitize(data["model"])
+
+    skipped_keys = []
+    published_keys = []
+
+    base_topic, device_id = rtl_433_device_info(data, topic_prefix)
+    if not device_id:
         # no unique device identifier
+        logging.warning("No suitable identifier found for model: ", model)
         return
 
-    if "channel" in data:
-        channel = str(data["channel"])
-    else:
-        channel = '0'
+    if args.ids and "id" in data and data.get("id") not in args.ids:
+        # not in the safe list
+        logging.debug("Device (%s) is not in the desired list of device ids: [%s]" % (data["id"], ids))
+        return
 
     # detect known attributes
     for key in data.keys():
         if key in mappings:
-            publish_config(mqttc, key, model, instance, channel, mappings[key])
-            # print(key)
+            # topic = "/".join([topicprefix,"devices",model,instance,key])
+            topic = "/".join([base_topic, key])
+            if publish_config(mqttc, topic, model, device_id, mappings[key], key):
+                published_keys.append(key)
+        else:
+            if key not in SKIP_KEYS:
+                skipped_keys.append(key)
+
+    if "secret_knock" in data.keys():
+        for m in secret_knock_mappings:
+            topic = "/".join([base_topic, "secret_knock"])
+            if publish_config(mqttc, topic, model, device_id, m, "secret_knock"):
+                published_keys.append("secret_knock")
+
+    if published_keys:
+        logging.info("Published %s: %s" % (device_id, ", ".join(published_keys)))
+
+        if skipped_keys:
+            logging.info("Skipped %s: %s" % (device_id, ", ".join(skipped_keys)))
+
 
 
 def rtl_433_bridge():
