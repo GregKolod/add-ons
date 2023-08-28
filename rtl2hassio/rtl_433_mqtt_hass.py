@@ -103,6 +103,17 @@ import paho.mqtt.client as mqtt
 import re
 
 
+MQTT_HOST = os.environ['MQTT_HOST']
+MQTT_PORT = os.environ['MQTT_PORT']
+MQTT_USERNAME = os.environ['MQTT_USERNAME']
+MQTT_PASSWORD = os.environ['MQTT_PASSWORD']
+MQTT_TOPIC = os.environ['MQTT_TOPIC']
+DISCOVERY_PREFIX = os.environ['DISCOVERY_PREFIX']
+DISCOVERY_INTERVAL = os.environ['DISCOVERY_INTERVAL']
+
+BLACK_LIST = os.environ['BLACK_LIST']
+
+
 discovery_timeouts = {}
 
 # Fields that get ignored when publishing to Home Assistant
@@ -814,6 +825,10 @@ def bridge_event_to_hass(mqttc, topic_prefix, data):
         # not a device event
         logging.debug("Model is not defined. Not sending event to Home Assistant.")
         return
+
+    if data["model"] in BLACK_LIST:
+        # filtruj niechciane modele w protokole
+        return    
 
     model = sanitize(data["model"])
 
