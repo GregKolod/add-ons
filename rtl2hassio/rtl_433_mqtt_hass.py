@@ -836,6 +836,11 @@ def bridge_event_to_hass(mqttc, topic_prefix, data):
         # not a device event
         logging.debug("Model is not defined. Not sending event to Home Assistant.")
         return
+      
+    if data["model"] in BLACK_LIST:
+        # filtruj niechciane modele w protokole
+        return   
+  
 
     model = sanitize(data["model"])
 
