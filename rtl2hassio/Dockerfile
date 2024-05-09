@@ -59,7 +59,7 @@ ENV BLACK_LIST "Oregon-CM180"
 # paho install
 #
 
-RUN pip install paho-mqtt
+RUN pip3 install paho-mqtt
 
 
 #
