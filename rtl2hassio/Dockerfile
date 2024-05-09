@@ -39,7 +39,6 @@ WORKDIR /root
 COPY --from=builder /build/root/ /
 
 
-
 #
 # Define environment variables
 # 
@@ -56,13 +55,6 @@ ENV DISCOVERY_INTERVAL 600
 ENV BLACK_LIST "Oregon-CM180"
 
 
-
-
-
-#
-# Install Paho-MQTT client
-#
-RUN pip3 install paho-mqtt
 
 #
 # Blacklist kernel modules for RTL devices
