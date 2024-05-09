@@ -39,7 +39,7 @@ WORKDIR /root
 COPY --from=builder /build/root/ /
 
 
-WORKDIR /data
+# WORKDIR /data
 
 RUN apk add --no-cache python3
 RUN apk add py3-pip
