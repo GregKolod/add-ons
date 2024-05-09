@@ -43,7 +43,7 @@ WORKDIR /data
 
 RUN apk add --no-cache python3
 RUN apk add py3-pip
-RUN pip install py3-paho-mqtt
+RUN pip install paho-mqtt
 
 #
 # Define environment variables
