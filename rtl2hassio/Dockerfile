@@ -38,12 +38,7 @@ RUN apk add --no-cache libusb \
 WORKDIR /root
 COPY --from=builder /build/root/ /
 
-RUN  apk add --no-cache libusb mosquitto-clients jq
-            
-WORKDIR /data
 
-RUN apk add --no-cache python3 && \
-    apk add --no-cache py-pip
 
 #
 # Define environment variables
