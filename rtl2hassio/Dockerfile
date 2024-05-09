@@ -20,7 +20,7 @@ RUN git clone https://github.com/merbanan/rtl_433
 WORKDIR ./rtl_433
 
 # Build a specific commit or tag.
-ARG rtl433GitRevision=latest
+ARG rtl433GitRevision=23.11
 RUN git checkout ${rtl433GitRevision}
 WORKDIR ./build
 RUN cmake ..
