@@ -1,50 +1,24 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.18
-FROM $BUILD_FROM as builder
-MAINTAINER pbkhrv@pm.me
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base-python:3.12-alpine3.18
+FROM ${BUILD_FROM} as builder
 
-ENV LANG C.UTF-8
-
-# Copied with minor edits from https://github.com/hertzg/rtl_433_docker/blob/master/images/alpine/build-context/Dockerfile
-RUN apk add --no-cache --virtual .buildDeps \
-    build-base \
-    libusb-dev \
-    librtlsdr-dev \
-    cmake \
-    git
-
-WORKDIR /build
-
-RUN git clone https://github.com/merbanan/rtl_433
-WORKDIR ./rtl_433
-
-# Build a specific commit or tag.
 ARG rtl433GitRevision=23.11
-RUN git checkout ${rtl433GitRevision}
-WORKDIR ./build
-RUN cmake ..
-RUN make -j 4
 
-WORKDIR /build/root
-WORKDIR /build/rtl_433/build
-RUN make DESTDIR=/build/root/ install
+# RUN wget https://raw.githubusercontent.com/merbanan/rtl_433/${rtl433GitRevision}/examples/rtl_433_mqtt_hass.py -O rtl_433_mqtt_hass.py
 
-FROM $BUILD_FROM
+FROM ${BUILD_FROM}
 
-ENV LANG C.UTF-8
+# COPY --from=builder rtl_433_mqtt_hass.py .
+# COPY run.sh .
 
-RUN apk add --no-cache libusb \
-    librtlsdr \
-    sed
-WORKDIR /root
-COPY --from=builder /build/root/ /
+RUN \
+    pip install \
+        --no-cache-dir \
+        --prefer-binary \
+        paho-mqtt==1.6.1 \
+    \
+    && chmod a+x /run.sh
 
-
-# WORKDIR /data
-
-RUN apk add --no-cache python3
-RUN apk add py3-pip
-RUN pip install paho-mqtt
-
+CMD [ "/run.sh" ]
 #
 # Define environment variables
 # 
