@@ -55,6 +55,15 @@ ENV DISCOVERY_INTERVAL 600
 ENV BLACK_LIST "Oregon-CM180"
 
 
+#
+# paho install
+#
+
+RUN \
+    pip install \
+        --no-cache-dir \
+        --prefer-binary \
+        paho-mqtt==1.6.1 
 
 #
 # Blacklist kernel modules for RTL devices
