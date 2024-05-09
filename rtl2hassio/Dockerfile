@@ -42,7 +42,7 @@ COPY --from=builder /build/root/ /
 WORKDIR /data
 
 
-RUN apt-get install -y python3-dev 
+
 #
 # Define environment variables
 # 
@@ -58,12 +58,6 @@ ENV DISCOVERY_PREFIX homeassistant
 ENV DISCOVERY_INTERVAL 600
 ENV BLACK_LIST "Oregon-CM180"
 
-
-#
-# paho install
-#
-
-RUN pip3 install paho-mqtt
 
 
 #
