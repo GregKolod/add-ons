@@ -1,11 +1,9 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.18
+FROM $BUILD_FROM as builder
+MAINTAINER pbkhrv@pm.me
 
 ENV LANG C.UTF-8
 
-#
-# First install software packages needed to compile RTL-SDR and rtl_433
-#
 # Copied with minor edits from https://github.com/hertzg/rtl_433_docker/blob/master/images/alpine/build-context/Dockerfile
 RUN apk add --no-cache --virtual .buildDeps \
     build-base \
@@ -41,10 +39,7 @@ WORKDIR /root
 COPY --from=builder /build/root/ /
 
 RUN  apk add --no-cache libusb mosquitto-clients jq
-    
-    
-    
-    
+            
 WORKDIR /data
 
 RUN apk add --no-cache python3 && \
