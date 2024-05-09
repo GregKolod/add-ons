@@ -14,11 +14,8 @@ RUN \
     pip install \
         --no-cache-dir \
         --prefer-binary \
-        paho-mqtt==1.6.1 \
-    \
-    && chmod a+x /run.sh
+        paho-mqtt
 
-CMD [ "/run.sh" ]
 #
 # Define environment variables
 # 
