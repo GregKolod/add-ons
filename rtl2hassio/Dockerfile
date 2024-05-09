@@ -41,9 +41,8 @@ COPY --from=builder /build/root/ /
 
 WORKDIR /data
 
-RUN apk add --no-cache python3 && \
-    apk add --no-cache py-pip
 
+RUN apt-get install -y python3-dev 
 #
 # Define environment variables
 # 
