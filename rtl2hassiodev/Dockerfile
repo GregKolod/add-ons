@@ -58,7 +58,7 @@ ENV BLACK_LIST "Oregon-CM180"
 #
 # Install Paho-MQTT client
 #
-RUN pip3 install paho-mqtt
+# RUN pip3 install paho-mqtt
 
 #
 # Blacklist kernel modules for RTL devices
