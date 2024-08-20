@@ -1,6 +1,6 @@
 {
   "name": "RTL_433 to Hassio DEV",
-  "version": "0.1",
+  "version": "0.2",
   "slug": "rtl2hassiodev",
   "description": "RTL_433 to Hassio with autodiscovery DEV",
   "url": "https://github.com/GregKolod/add-ons",
