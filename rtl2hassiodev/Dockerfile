@@ -3,38 +3,40 @@ FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
-#
-# First install software packages needed to compile RTL-SDR and rtl_433
-#
-RUN apk add --no-cache --virtual build-deps alpine-sdk cmake git libusb-dev && \
-    mkdir /tmp/src && \
-    cd /tmp/src && \
-    git clone git://git.osmocom.org/rtl-sdr.git && \
-    mkdir /tmp/src/rtl-sdr/build && \
-    cd /tmp/src/rtl-sdr/build && \
-    cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX:PATH=/usr/local && \
-    make && \
-    make install && \
-    chmod +s /usr/local/bin/rtl_* && \
-    cd /tmp/src/ && \
-    git clone https://github.com/merbanan/rtl_433 && \
-    cd rtl_433/ && \
-    mkdir build && \
-    cd build && \
-    cmake ../ && \
-    make && \
-    make install && \
-    apk del build-deps && \
-    rm -r /tmp/src && \
-    apk add --no-cache libusb mosquitto-clients jq
-    
-    
-    
-    
-WORKDIR /data
+# Copied with minor edits from https://github.com/hertzg/rtl_433_docker/blob/master/images/alpine/build-context/Dockerfile
+RUN apk add --no-cache --virtual .buildDeps \
+    build-base \
+    libusb-dev \
+    librtlsdr-dev \
+    cmake \
+    git
 
-RUN apk add --no-cache python3 && \
-    apk add --no-cache py-pip
+WORKDIR /build
+
+RUN git clone https://github.com/merbanan/rtl_433
+WORKDIR ./rtl_433
+
+# Build a specific commit or tag.
+ARG rtl433GitRevision=23.11
+RUN git checkout ${rtl433GitRevision}
+WORKDIR ./build
+RUN cmake ..
+RUN make -j 4
+
+WORKDIR /build/root
+WORKDIR /build/rtl_433/build
+RUN make DESTDIR=/build/root/ install
+
+FROM $BUILD_FROM
+
+ENV LANG C.UTF-8
+
+RUN apk add --no-cache libusb \
+    librtlsdr \
+    sed
+WORKDIR /root
+COPY --from=builder /build/root/ /
+
 
 #
 # Define environment variables
@@ -53,15 +55,6 @@ ENV BLACK_LIST "Oregon-CM180"
 
 
 
-
-
-#
-# Install Paho-MQTT client
-#
-# RUN pip3 install paho-mqtt
-
-#
-# Blacklist kernel modules for RTL devices
 #
 COPY rtl.blacklist.conf /etc/modprobe.d/rtl.blacklist.conf
 
@@ -70,7 +63,7 @@ COPY rtl.blacklist.conf /etc/modprobe.d/rtl.blacklist.conf
 #
 COPY entry.sh rtl_433_mqtt_hass.py /scripts/
 RUN chmod +x /scripts/entry.sh
-RUN chmod +x /scripts/rtl_433_mqtt_hass.py
+#RUN chmod +x /scripts/rtl_433_mqtt_hass.py
 #
 # Execute entry script
 #
